@@ -1,0 +1,2 @@
+class Postage < ApplicationRecord
+end
