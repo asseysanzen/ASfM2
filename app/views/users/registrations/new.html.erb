@@ -4,12 +4,42 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :Icon %><br />
+    <%= f.attachment_field :user_image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Twitter %><br />
+    <%= f.text_field :twitter_account, autofocus: true, autocomplete: "twitter_account" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Instagram %><br />
+    <%= f.text_field :instagram_account, autofocus: true, autocomplete: "instagram_account" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :Postal_Code %><br />
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />

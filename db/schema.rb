@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_132704) do
+ActiveRecord::Schema.define(version: 2020_06_04_183031) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_132704) do
 
   create_table "payment_methods", force: :cascade do |t|
     t.string "method"
-    t.boolean "valid", default: true
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_132704) do
     t.string "instagram_account"
     t.string "postal_code"
     t.string "address"
-    t.boolean "valid", default: true, null: false
+    t.boolean "status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_image_id"
