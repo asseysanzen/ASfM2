@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
     patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
     put 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
-    resources :user, only: [:index, :show]
+    resources :users, only: [:index, :show]
 
     get 'posts/about' => 'posts#about' #aboutページ
     get 'posts/favorite' => 'posts#favotite' #お気に入り投稿ページ

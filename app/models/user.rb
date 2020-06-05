@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   attachment :user_image
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   enum status:{有効:true, 退会済:false}
 
