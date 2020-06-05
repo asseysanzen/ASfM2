@@ -1,0 +1,51 @@
+<div class="midasi">
+	<h3 class="midasitext">New Post</h3>
+</div>
+
+<div class="product_form">
+<%= form_for @post_new, url:  users_posts_path do |f| %>
+	<div class="admin_picture">
+		<div class="picture">
+			<%= f.attachment_field :image %>
+		</div>
+	</div>
+
+	<div class="explain">
+		<div class="product_name">
+			<div class="admin_label">
+				<%= f.label :Item %>
+			</div>
+			<div class="explain_text">
+				<%= f.text_field :item_name %>
+			</div>
+		</div>
+		<div class="product_description">
+			<div class="admin_label">
+				<%= f.label :Description %>
+			</div>
+			<div class="explain_text">
+				<%= f.text_area :description %>
+			</div>
+		</div>
+		<div class="product_genre">
+			<div class="admin_label">
+				<%= f.label :Genre %>
+			</div>
+			<div class="explain_text">
+				<%= f.collection_select :genre_id, Genre.where("status = ? OR status = ?", 0,1), :id, :kind %>
+			</div>
+		</div>
+		<div class="product_price">
+			<div class="admin_label">
+				<%= f.label :Price %>
+			</div>
+			<div class="explain_text">
+				<%= f.text_field :price %>円
+			</div>
+		</div>
+		<div class="admin_button">
+  			<%= f.submit '新規登録' %>
+  		</div>
+  	</div>
+<% end %>
+</div>

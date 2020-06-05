@@ -1,0 +1,70 @@
+<div class="midasi">
+	<h3 class="midasitext"><%= @user.name %>さんの会員情報編集</h3>
+</div>
+
+<div class="customer_contents">
+
+<%= form_for @user, url: admins_user_path(@user.id) do |f| %>
+	<div class="customer_id">
+		<div class="admin_c_label">
+			<%= f.label :Icon %>
+		</div>
+    	<%= f.attachment_field :user_image %>
+    </div>
+	<div class="customer_id">
+		<div class="admin_c_label"><p>ID</p></div>
+			<%= @user.id %>
+		</div>
+		<div class="customer_name">
+			<div class="admin_c_label">
+				<%= f.label :Name %>
+			</div>
+			<%= f.text_field :name %>
+		</div>
+		<div class="customer_name">
+			<div class="admin_c_label">
+				<p>Twitter</p>
+			</div>
+			<%= @user.twitter_account %>
+		</div>
+		<div class="customer_name">
+			<div class="admin_c_label">
+				<p>Instagram</p>
+			</div>
+			<%= @user.instagram_account %>
+		</div>
+		<div class="customer_tell">
+			<div class="admin_c_label">
+				<%= f.label :Profile %>
+			</div>
+			<%= f.text_field :profile %>
+		</div>
+		<div class="customer_postcode">
+			<div class="admin_c_label">
+				<%= f.label :PostalCode %>
+			</div>
+			<%= f.text_field :postal_code %>
+		</div>
+		<div class="customer_address">
+			<div class="admin_c_label">
+				<%= f.label :Address %>
+			</div>
+			<%= f.text_field :address %>
+		</div>
+		<div class="customer_email">
+			<div class="admin_c_label">
+				<%= f.label :Email %>
+			</div>
+			<%= f.text_field :email %>
+		</div>
+		<div class="customer_status">
+			<div class="admin_c_label">
+				<%= f.label :Status %>
+			</div>
+			<%= f.select :status, User.statuses.keys.to_a %>
+		</div>
+		<div class="c_button">
+  			<%= f.submit 'Update' %>
+  		</div>
+<% end %>
+</div>

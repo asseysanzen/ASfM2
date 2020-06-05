@@ -1,0 +1,11 @@
+<div class="midasi">
+	<h3 class="midasitext">送料変更</h3>
+</div>
+
+<div>
+	<%= form_for @postage, url: admins_postage_path(@postage.id) do |f| %>
+		<%= f.label :送料 %>
+		<%= f.text_field :fee %>円
+		<%= f.submit '変更' %>
+	<% end %>
+</div>

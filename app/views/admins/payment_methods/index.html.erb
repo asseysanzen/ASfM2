@@ -1,0 +1,60 @@
+<div class="midasi">
+	<h3 class="midasitext">支払い方法・送料</h3>
+</div>
+
+<div class="paymethod">
+	<div class="genre_form">
+		<%= form_for @payment_method_new, url: admins_payment_methods_path do |f| %>
+			<%= f.label :支払い方法 %>
+			<%= f.text_field :method %>
+			<%= f.select :status, PaymentMethod.statuses.keys.to_a %>
+  			<%= f.submit '追加' %>
+  		<% end %>
+	</div>
+
+	<div class="genrelists">
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th>支払い方法</th>
+					<th>状態</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @payment_methods.each do |payment_method| %>
+				<tr>
+					<td><%= payment_method.method %></td>
+					<td><%= payment_method.status %>
+					<td><div class="btn btn-primary active"><%= link_to "編集", edit_admins_payment_method_path(payment_method.id) %></div></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="a_postage">
+	<div class="genre_form">
+		<% if @postages.count == 0 %> <!-- 送料を設定していない場合設定フォームを表示 -->
+			<%= form_for @postage_new, url: admins_postages_path do |f| %>
+				<%= f.label :Postage %>
+				<%= f.text_field :fee %>
+  				<%= f.submit '設定' %>
+  			<% end %>
+  		<% end %>
+	</div>
+	<div class="genrelists">
+		<table class="table table-hover table-inverse">
+			<tbody>
+				<% @postages.each do |postage| %>
+				<tr>
+					<td>送料</td>
+					<td><%= postage.fee %>円</td>
+					<td><div class="btn btn-primary active"><%= link_to "編集", edit_admins_postage_path(postage.id) %></div></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

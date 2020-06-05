@@ -31,10 +31,10 @@
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt" %></li>
             <% elsif admin_signed_in? %>
               <li><%= link_to '投稿' %></li>
-              <li><%= link_to 'ユーザー' %></li>
+              <li><%= link_to 'ユーザー', admins_users_path %></li>
               <li><%= link_to '購入履歴' %></li>
-              <li><%= link_to 'ジャンル' %></li>
-              <li><%= link_to '支払い関連' %></li>
+              <li><%= link_to 'ジャンル', admins_genres_path %></li>
+              <li><%= link_to '支払い関連', admins_payment_methods_path %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"fas fa-sign-out-alt" %></li>
             <% else %>
               <li><%= link_to 'アバウト' %></li>
