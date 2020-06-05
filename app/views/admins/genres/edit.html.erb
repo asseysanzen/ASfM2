@@ -1,0 +1,10 @@
+<div class="midasi">
+	<h3 class="midasitext">ジャンル編集</h3>
+</div>
+
+<%= form_for @genre, url: admins_genre_path(@genre.id) do |f| %>
+			<%= f.label :Genre %>
+			<%= f.text_field :kind %>
+			<%= f.select :status, Genre.statuses.keys.to_a %>
+			<%= f.submit '変更' %>
+<% end %>

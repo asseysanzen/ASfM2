@@ -14,12 +14,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'users/posts#top'
 
-  get 'users/mypage' => 'users#mypage' #ログインユーザーのマイページ
-  get 'users/data' => 'users#data' #ログインユーザーの売上ページ
-  get 'users/follow' => 'users#follow' #ログインユーザーのフォロー一覧ページ
-  resources :user, only: [:index, :show, :edit, :create, :update]
-
   namespace :users do
+
+    get 'users/mypage' => 'users#mypage' #ログインユーザーのマイページ
+    get 'users/data' => 'users#data' #ログインユーザーの売上ページ
+    get 'users/follow' => 'users#follow' #ログインユーザーのフォロー一覧ページ
+    get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
+    patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
+    put 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
+    resources :user, only: [:index, :show]
 
     get 'posts/about' => 'posts#about' #aboutページ
     get 'posts/favorite' => 'posts#favotite' #お気に入り投稿ページ
