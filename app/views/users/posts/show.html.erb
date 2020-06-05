@@ -1,0 +1,56 @@
+<div class="midasi">
+  <h3 class="midasitext">Post</h3>
+</div>
+
+<div class="admin_picture">
+        <%= attachment_image_tag @post, :image, size:"200x200" %>
+      </div>
+
+    <div class="explain">
+      <div class="explain_content">
+        <div class="admin_label"><p>Item</p></div>
+        <div class="explain_text">
+          <%= @post.item_name %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Description</p></div>
+        <div class="explain_text">
+          <%= @post.description %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Genre</p></div>
+        <div class="explain_text">
+          <%= @post.genre.kind %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Price</p></div>
+        <div class="explain_text">
+          <%= @post.price %>jpy
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Seller</p></div>
+        <div class="explain_text">
+          <%= @post.user.name %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Twitter</p></div>
+        <div class="explain_text">
+          <%= @post.user.twitter_account %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Instagram</p></div>
+        <div class="explain_text">
+          <%= @post.user.instagram_account %>
+        </div>
+      </div>
+      <div class="btn btn-primary active">
+        <%= link_to "Edit", edit_users_post_path(@post.id) %>
+      </div>
+      </div>
+

@@ -43,6 +43,7 @@
 				<%= f.text_field :price %>円
 			</div>
 		</div>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<div class="admin_button">
   			<%= f.submit '新規登録' %>
   		</div>
