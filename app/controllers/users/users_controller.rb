@@ -1,11 +1,17 @@
 class Users::UsersController < ApplicationController
 
 	def index
-		@users = User.all
+		@users = User.where(status: true)
 	end
 
 	def show
 		@user = User.find(params[:id])
+		@posts = Post.where(user_id: params[:id], status: 0)
+	end
+
+	def mypage
+		@user = current_user
+		@posts = @user.posts
 	end
 
 	def fix

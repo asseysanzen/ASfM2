@@ -1,0 +1,25 @@
+<div class="midasi">
+	<h3 class="midasitext">Users</h3>
+</div>
+
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Name</th>
+			<th>Twitter</th>
+			<th>Instagram</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= attachment_image_tag user, :user_image, size: "80x80" %></td>
+			<td><a href="<%= users_user_path(user.id) %>"><%= user.name %></a></td>
+			<td><%= user.twitter_account %></td>
+			<td><%= user.instagram_account %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
