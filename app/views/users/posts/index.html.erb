@@ -6,6 +6,23 @@
           <%= attachment_image_tag post, :image, size:"150x150" %>
         <% end %>
       </div>
+    <% if current_user %>
+        <% if post.favorited_by?(current_user) %>
+            <%= link_to users_post_favorites_path(post), method: :delete do %>
+                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= post.favorites.count %>
+            <% end %>
+        <% else %>
+            <%= link_to users_post_favorites_path(post), method: :post do %>
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <%= post.favorites.count %>
+            <% end %>
+        <% end %>
+    <% else %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <%= post.favorites.count %>
+    <% end %>
+    </div>
       <div>
         <%= post.price %>円
       </div>
