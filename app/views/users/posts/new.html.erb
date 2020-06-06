@@ -2,7 +2,7 @@
 	<h3 class="midasitext">New Post</h3>
 </div>
 
-<% if current_user.twitter_account.nil? and current_user.instagram_account.nil? %>
+<% if current_user.twitter_account.blank? and current_user.instagram_account.blank? %>
 	<div>
 		<p>Please register Twitter account or Instagram account.</p>
 	</div>
