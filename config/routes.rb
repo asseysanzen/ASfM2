@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
     patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
     put 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show] do
+      resource :relationships, only: [:create, :destroy]
+      get 'follows' => 'relationships#follower', as: 'follows'
+      get 'followers' => 'relationships#followed', as: 'followers'
+    end
 
     get 'posts/about' => 'posts#about' #aboutページ
     get 'posts/favorite' => 'posts#favorite' #お気に入り投稿ページ

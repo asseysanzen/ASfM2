@@ -35,11 +35,17 @@
 		</div>
 		<div class="customer_content">
 			<div class="admin_c_label"><p>Follower</p></div>
+				<%= link_to users_user_followers_path(@user.id) do %>
+					<%= @user.followed.count %>
+				<% end %>
 			<div class="explain_text">
 			</div>
 		</div>
 		<div class="customer_content">
 			<div class="admin_c_label"><p>Following</p></div>
+				<%= link_to users_user_follows_path(@user.id) do %>
+					<%= @user.follower.count %>
+				<% end %>
 			<div class="explain_text">
 			</div>
 		</div>

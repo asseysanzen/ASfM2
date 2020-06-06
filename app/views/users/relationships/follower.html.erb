@@ -1,7 +1,6 @@
-<div class="midasi">
-	<h3 class="midasitext">Users</h3>
-</div>
+<h2>Following Users</h2>
 
+<% if @users.count > 0 %>
 <table class="table table-hover table-inverse">
 	<thead>
 		<tr>
@@ -35,3 +34,6 @@
 		<% end %>
 	</tbody>
 </table>
+<% else %>
+	<p>No User</p>
+<% end %>

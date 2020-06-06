@@ -52,6 +52,8 @@ class Users::PostsController < ApplicationController
 	end
 
 	def follow
+		@user = current_user
+		@users = @user.following_user
 	end
 
 	private
