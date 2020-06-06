@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
 
     get 'posts/about' => 'posts#about' #aboutページ
-    get 'posts/favorite' => 'posts#favotite' #お気に入り投稿ページ
+    get 'posts/favorite' => 'posts#favorite' #お気に入り投稿ページ
     get 'posts/follow' => 'posts#follow' #フォローユーザーの投稿ページ
     resources :posts do
       resources :post_comments, only: [:create, :destroy]

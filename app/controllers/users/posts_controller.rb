@@ -47,6 +47,7 @@ class Users::PostsController < ApplicationController
 	end
 
 	def favorite
+		@posts = current_user.favorite_posts
 	end
 
 	def follow
