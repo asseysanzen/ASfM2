@@ -1,0 +1,84 @@
+<h4>Confirmation</h4>
+
+<div class="admin_picture">
+        <%= attachment_image_tag @purchase.post, :image, size:"200x200" %>
+</div>
+    <div class="explain">
+      <div class="explain_content">
+        <div class="admin_label"><p>Item</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.item_name %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Description</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.description %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Genre</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.genre.kind %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Price</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.price %>jpy
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Seller</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.user.name %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Twitter</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.user.twitter_account %>
+        </div>
+      </div>
+      <div class="explain_content">
+        <div class="admin_label"><p>Instagram</p></div>
+        <div class="explain_text">
+          <%= @purchase.post.user.instagram_account %>
+        </div>
+      </div>
+      </div>
+
+<table>
+    <tr>
+        <th class="table2">Postage：</th>
+        <td class="table2"><%= @postage.fee %>円</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th class="table2">Total Price：</th>
+        <td class="table2"><%= @purchase.post.price + @postage.fee %>円</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th class="table2">Payment method：</th>
+        <td class="table2"><%= @purchase.final_payment_method %></td>
+    </tr>
+</table>
+
+<div>
+        <h3 class="product_index_title">〜 お届け先 〜</h3>
+        <%= form_with model:@purchase, local: true, url: users_purchase_path(@purchase.id) do |f| %>
+                <%= @purchase.shipping_address.postal_code %>
+                <%= @purchase.shipping_address.address %>
+                <%= f.hidden_field :postal_code, :value => @purchase.shipping_address.postal_code %>
+                <%= f.hidden_field :address, :value => @purchase.shipping_address.address %>
+                <%= f.hidden_field :final_price, :value => @purchase.post.price %>
+                <%= f.hidden_field :final_postage, :value => @postage.fee %>
+                <%= f.hidden_field :final_payment_method, :value => @purchase.final_payment_method %>
+        <div class="right">
+            <%= f.submit 'Confirm the Purchase', class:"btn btn-primary btn1  fa-lg" %>
+        </div>
+        <% end %>
+    </div>

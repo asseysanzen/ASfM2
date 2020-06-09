@@ -38,12 +38,19 @@ Rails.application.routes.draw do
 
     resources :genres, only: [:show]
 
-    get 'purchases/input' => 'purchases#input' #購入情報入力ページ
-    get 'purchases/confirm' => 'purchases#confirm' #購入確認ページ
+    resources :carts, only: [:create, :destroy]
+
+    #get 'purchases/input' => 'purchases#input' #購入情報入力ページ
+    #post 'purchases/confirm' => 'purchases#confirm' #購入確認ページ
     get 'purchases/thanks' => 'purchases#thanks' #ご利用ありがとうページ
     get 'purchases/buy' => 'purchases#buy' #購入履歴ページ
     get 'purchases/sell' => 'purchases#sell' #販売履歴ページ
-    resources :purchases, only: [:show, :create]
+    resources :purchases, only: [:show, :create, :update, :destroy] do
+      member do
+        get :input
+        get :confirm
+      end
+    end
 
     resources :shipping_addresses, only: [:index, :edit, :update, :create, :destroy]
 
