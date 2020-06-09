@@ -7,6 +7,7 @@ class User < ApplicationRecord
   attachment :user_image
 
   has_many :posts, dependent: :destroy
+  has_many :purchases
   has_many :shipping_addresses, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
@@ -15,6 +16,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  has_many :carts
 
   enum status:{有効:true, 退会済:false}
 

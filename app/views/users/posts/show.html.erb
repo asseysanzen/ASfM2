@@ -72,6 +72,15 @@
       </div>
 
 <div>
+    <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
+        <%= f.hidden_field :shipping_address_id, :value => 1 %>
+        <%= f.submit "Purchase" %>
+    <% end %>
+</div>
+
+<div>
 <h4>Comment<i class="fas fa-comments"></i></h4>
     <div>
     <% @post.comments.each do |comment| %>
