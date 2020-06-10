@@ -1,0 +1,29 @@
+<div class="midasi">
+	<h3 class="midasitext">購入履歴</h3>
+</div>
+
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>購入日時</th>
+			<th>商品</th>
+			<th>販売者</th>
+			<th>購入者</th>
+			<th>販売ステータス</th>
+			<th>購入ステータス</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @purchases.each do |purchase| %>
+		<tr>
+			<td><a href="<%= admins_purchase_path(purchase.id) %>"><%= purchase.created_at%></a></td>
+			<td><a href="<%= admins_post_path(purchase.id) %>"><%= purchase.post.item_name %></a></td>
+			<td><a href="<%= admins_user_path(purchase.post.user.id) %>"><%= purchase.post.user.name %></a></td>
+			<td><a href="<%= admins_user_path(purchase.buying_user.id) %>"><%= purchase.buying_user.name %></a></td>
+			<td><%= purchase.selling_status %></td>
+			<td><%= purchase.buying_status %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -7,6 +7,9 @@ class Admins::GenresController < ApplicationController
 		@genre_new = Genre.new
 	end
 
+	def show
+	end
+
 	def create
 		@genre_new = Genre.new(genre_params)
 		if @genre_new.save

@@ -1,20 +1,24 @@
-<h4>Purchase Information</h4>
+<h4>情報入力</h4>
 
 <%= form_with model:@purchase, local: true, url: users_purchase_path(@purchase.id) do |f| %>
 	<div>
-		<p>Payment Method</p>
+		<p>支払い方法</p>
 	</div>
 	<div>
 	<%= f.collection_select :final_payment_method, PaymentMethod.where(status: true), :method, :method %>
 	</div>
 	<div>
-		<p>Shipping Address</p>
+		<p>配送先</p>
 	</div>
 	<div>
-		<p>Registration Address</p>
+		<p>登録済住所</p>
 			<%= f.collection_select :shipping_address_id, ShippingAddress.where(user_id: current_user.id), :id, :full_address %>
 	</div>
+
+	<div>
+		<%= link_to '新しい配送先を追加', new_address_users_purchase_path(@purchase.id) %>
+	</div>
     <div>
-    	<%= f.submit 'Confirmation Screen' %>
+    	<%= f.submit '確認' %>
     </div>
 <% end %>

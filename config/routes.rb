@@ -38,17 +38,15 @@ Rails.application.routes.draw do
 
     resources :genres, only: [:show]
 
-    resources :carts, only: [:create, :destroy]
-
-    #get 'purchases/input' => 'purchases#input' #購入情報入力ページ
-    #post 'purchases/confirm' => 'purchases#confirm' #購入確認ページ
     get 'purchases/thanks' => 'purchases#thanks' #ご利用ありがとうページ
     get 'purchases/buy' => 'purchases#buy' #購入履歴ページ
     get 'purchases/sell' => 'purchases#sell' #販売履歴ページ
+    post 'purchases/create_address' => 'purchases#create_address' #購入ページで配送先登録をするため
     resources :purchases, only: [:show, :create, :update, :destroy] do
       member do
-        get :input
-        get :confirm
+        get :input #購入情報入力ページ
+        get :new_address #購入時に新しい住所を追加するための画面
+        get :confirm #購入確認ページ
       end
     end
 
@@ -64,7 +62,7 @@ Rails.application.routes.draw do
     get 'purchases/data' => 'purchases#data' #アプリの売上ページ
     resources :purchases, only: [:index, :show, :update]
 
-    resources :posts, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy]
 
     resources :genres, only: [:index, :edit, :update, :create]
 

@@ -30,9 +30,9 @@
               <li><%= link_to 'Users', users_users_path %></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt" %></li>
             <% elsif admin_signed_in? %>
-              <li><%= link_to 'Posts', users_posts_path %></li>
+              <li><%= link_to 'Posts', admins_posts_path %></li>
               <li><%= link_to 'Users', admins_users_path %></li>
-              <li><%= link_to '購入履歴' %></li>
+              <li><%= link_to '購入履歴', admins_purchases_path %></li>
               <li><%= link_to 'Genre', admins_genres_path %></li>
               <li><%= link_to 'Payment', admins_payment_methods_path %></li>
               <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class:"fas fa-sign-out-alt" %></li>
