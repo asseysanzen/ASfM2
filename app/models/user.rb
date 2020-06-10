@@ -16,7 +16,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
-  has_many :carts
+  has_many :buying_user, class_name: "Purchase", foreign_key: "buying_user_id", dependent: :destroy
+  has_many :selling_user, class_name: "Purchase", foreign_key: "selling_user_id", dependent: :destroy
 
   enum status:{有効:true, 退会済:false}
 

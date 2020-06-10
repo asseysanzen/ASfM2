@@ -1,5 +1,5 @@
 <div class="midasi">
-  <h3 class="midasitext">Post</h3>
+  <h3 class="midasitext">投稿商品</h3>
 </div>
 
 <div class="admin_picture">
@@ -66,18 +66,26 @@
           <%= @post.user.instagram_account %>
         </div>
       </div>
+      <% if current_user == @post.user %>
       <div class="btn btn-primary active">
         <%= link_to "Edit", edit_users_post_path(@post.id) %>
       </div>
+      <% end %>
       </div>
 
+<% if current_user %>
+<% if @post.status == "販売中" %>
 <div>
     <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
         <%= f.hidden_field :post_id, :value => @post.id %>
         <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
         <%= f.hidden_field :shipping_address_id, :value => 1 %>
-        <%= f.submit "Purchase" %>
+        <%= f.submit "購入" %>
     <% end %>
+<% else %>
+    <p>売切</p>
+<% end %>
+<% end %>
 </div>
 
 <div>

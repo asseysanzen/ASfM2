@@ -1,4 +1,4 @@
-<h4>Confirmation</h4>
+<h4>確認画面</h4>
 
 <div class="admin_picture">
         <%= attachment_image_tag @purchase.post, :image, size:"200x200" %>
@@ -77,6 +77,7 @@
                 <%= f.hidden_field :final_price, :value => @purchase.post.price %>
                 <%= f.hidden_field :final_postage, :value => @postage.fee %>
                 <%= f.hidden_field :final_payment_method, :value => @purchase.final_payment_method %>
+                <%= f.hidden_field :buying_status, :value => "取引成立" %>
         <div class="right">
             <%= f.submit 'Confirm the Purchase', class:"btn btn-primary btn1  fa-lg" %>
         </div>

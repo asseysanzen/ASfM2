@@ -7,7 +7,7 @@ class Users::PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.where(status: 0).order(id: "DESC") #投稿を新しい順に並べる
+		@posts = Post.where.not(status: "販売停止").order(id: "DESC") #投稿を新しい順に並べる
 	end
 
 	def show

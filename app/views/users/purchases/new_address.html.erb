@@ -1,0 +1,11 @@
+<h4>配送先追加</h4>
+
+<div class="genre_form">
+	<%= form_for @shipping_address, url: users_purchases_create_address_path do |f| %>
+		<%= f.label :郵便番号 %>
+		<%= f.text_field :postal_code %>
+		<%= f.label :住所 %>
+		<%= f.text_field :address %>
+  		<%= f.submit '追加' %>
+  	<% end %>
+</div>
