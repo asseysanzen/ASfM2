@@ -23,8 +23,14 @@
         <%= post.favorites.count %>
     <% end %>
     </div>
+    <% if post.status == "販売中" %>
       <div>
         <%= post.price %>円
       </div>
+    <% else %>
+    <div>
+        <%= post.status %>
+      </div>
+    <% end %>
     </div>
   <% end %>

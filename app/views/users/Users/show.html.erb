@@ -28,13 +28,17 @@
 		<div class="customer_content">
 			<div class="admin_c_label"><p>Twitter</p></div>
 			<div class="explain_text">
+				<%= link_to "https://twitter.com/#{@user.twitter_account}", target: :_blank do %>
 				<%= @user.twitter_account %>
+				<% end %>
 			</div>
 		</div>
 		<div class="customer_content">
 			<div class="admin_c_label"><p>Instagram</p></div>
 			<div class="explain_text">
+				<%= link_to "https://www.instagram.com/#{@user.instagram_account}/", target: :_blank do %>
 				<%= @user.instagram_account %>
+				<% end %>
 			</div>
 		</div>
 		<div class="customer_content">

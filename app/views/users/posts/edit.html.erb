@@ -43,20 +43,16 @@
 				<%= f.text_field :price %>円
 			</div>
 		</div>
-		<div class="product_price">
-			<div class="admin_label">
-				<%= f.label :status %>
-			</div>
-			<div class="explain_text">
-				<%= f.select :status, Post.statuses.keys.to_a %>
-			</div>
-		</div>
+		<% if @post.status == "販売中" %>
 		<div class="admin_button">
   			<%= f.submit 'Update' %>
   		</div>
+  		<% end %>
   	</div>
 <% end %>
+<% if @post.status == "販売中" %>
 <div class="admin_button">
   			<%= link_to "Delete", users_post_path(@post.id), method: :delete, class:"btn btn-danger" %>
   		</div>
 </div>
+<% end %>

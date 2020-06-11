@@ -67,9 +67,11 @@
         </div>
       </div>
       <% if current_user == @post.user %>
-      <div class="btn btn-primary active">
-        <%= link_to "Edit", edit_users_post_path(@post.id) %>
-      </div>
+        <% if @post.status == "販売中" %>
+            <div class="btn btn-primary active">
+                <%= link_to "Edit", edit_users_post_path(@post.id) %>
+            </div>
+        <% end %>
       <% end %>
       </div>
 
@@ -79,6 +81,7 @@
     <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
         <%= f.hidden_field :post_id, :value => @post.id %>
         <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
+        <%= f.hidden_field :genre_id, :value => @post.genre_id %>
         <%= f.hidden_field :shipping_address_id, :value => 1 %>
         <%= f.submit "購入" %>
     <% end %>
