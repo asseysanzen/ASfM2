@@ -10,6 +10,11 @@ class Users::PurchasesController < ApplicationController
 		@purchases = Purchase.where(selling_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC")
 	end
 
+	def data
+		@genres = Genre.all
+		@purchases = Purchase.where.not(buying_status: "カート").where(selling_user: current_user)
+	end
+
 	def show
 		@purchase = Purchase.find(params[:id])
 	end
@@ -48,7 +53,7 @@ class Users::PurchasesController < ApplicationController
 
 	def update
 	 	@purchase = Purchase.find(params[:id])
-	 	if @purchase.post.status = "売切"
+	 	if @purchase.post.status == "売切"
 	 		redirect_to users_post_path(@purchase.post.id)
 	 	else
 	 		@purchase.update(purchase_params)
@@ -79,7 +84,7 @@ class Users::PurchasesController < ApplicationController
 	private
 
 	def purchase_params
-		params.require(:purchase).permit(:post_id, :shipping_address_id, :buying_user_id, :selling_user_id, :final_postage, :final_price, :final_payment_method, :postal_code, :address, :buying_status, :selling_status)
+		params.require(:purchase).permit(:post_id, :shipping_address_id, :genre_id, :buying_user_id, :selling_user_id, :final_postage, :final_price, :final_payment_method, :postal_code, :address, :buying_status, :selling_status)
 	end
 
 	def shipping_address_params

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   namespace :users do
 
     get 'users/mypage' => 'users#mypage' #ログインユーザーのマイページ
-    get 'users/data' => 'users#data' #ログインユーザーの売上ページ
     get 'users/follow' => 'users#follow' #ログインユーザーのフォロー一覧ページ
     get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
     patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
@@ -41,6 +40,7 @@ Rails.application.routes.draw do
     get 'purchases/thanks' => 'purchases#thanks' #ご利用ありがとうページ
     get 'purchases/buy' => 'purchases#buy' #購入履歴ページ
     get 'purchases/sell' => 'purchases#sell' #販売履歴ページ
+    get 'purchases/data' => 'purchases#data' #ログインユーザーの売上ページ
     post 'purchases/create_address' => 'purchases#create_address' #購入ページで配送先登録をするため
     resources :purchases, only: [:show, :create, :update, :destroy] do
       member do
@@ -59,7 +59,6 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index, :show, :edit, :update]
 
-    get 'purchases/data' => 'purchases#data' #アプリの売上ページ
     resources :purchases, only: [:index, :show, :update]
 
     resources :posts, only: [:index, :show, :edit, :update, :destroy]

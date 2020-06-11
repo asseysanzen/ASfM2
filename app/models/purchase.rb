@@ -2,6 +2,7 @@ class Purchase < ApplicationRecord
 
 	belongs_to :post
 	belongs_to :shipping_address
+	belongs_to :genre
 	belongs_to :buying_user, class_name: "User"
   	belongs_to :selling_user, class_name: "User"
 

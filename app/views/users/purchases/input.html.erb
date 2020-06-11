@@ -1,5 +1,6 @@
 <h4>情報入力</h4>
 
+<% unless  ShippingAddress.where(user_id: current_user.id).blank? %>
 <%= form_with model:@purchase, local: true, url: users_purchase_path(@purchase.id) do |f| %>
 	<div>
 		<p>支払い方法</p>
@@ -21,4 +22,9 @@
     <div>
     	<%= f.submit '確認' %>
     </div>
+<% end %>
+<% else %>
+	<div>
+		<%= link_to '新しい配送先を追加', new_address_users_purchase_path(@purchase.id) %>
+	</div>
 <% end %>

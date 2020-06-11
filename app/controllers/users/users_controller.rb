@@ -30,7 +30,7 @@ class Users::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :user_image, :twitter_account, :instagram_account, :postal_code, :address, :email, :status)
+		params.require(:user).permit(:name, :user_image, :twitter_account, :instagram_account, :email, :status)
 	end
 
 end

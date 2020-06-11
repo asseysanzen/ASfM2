@@ -1,0 +1,68 @@
+<h4>売上分析</h4>
+
+<div>
+<h5>売上</h5>
+<%= @purchases.where(:created_at => 4.weeks.ago..Time.now).sum(:final_price) %>円
+</div>
+
+
+<div>
+<h5>過去</h5>
+<%= @purchases.where(:created_at => 8.weeks.ago..4.weeks.ago).sum(:final_price) %>円
+</div>
+
+<div class="genrelists">
+	<table class="table table-hover table-inverse">
+		<thead>
+			<tr>
+				<th>ジャンル</th>
+				<th>売上数</th>
+				<th>過去</th>
+				<th>売上金額</th>
+				<th>過去</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @genres.each do |genre| %>
+			<tr>
+				<td><%= genre.kind %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 4.weeks.ago..Time.now).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 8.weeks.ago..4.weeks.ago).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 4.weeks.ago..Time.now).sum(:final_price) %>円</td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 8.weeks.ago..4.weeks.ago).sum(:final_price) %>円</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<div class="genrelists">
+	<table class="table table-hover table-inverse">
+		<thead>
+			<tr>
+				<th>日付</th>
+				<th>売上</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @today.each do |purchase| %>
+			<% unless purchase.final_price.nil? %>
+			<tr>
+				<td><%= purchase.created_at %></td>
+				<td><%= purchase.final_price %></td>
+			</tr>
+			<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<% i = 1 %>
+<% while i <= 26 do %>
+<%= Date.current.ago(i.days).strftime('%Y/%m/%d') %>
+<% i += 1 %>
+<% end %>
+
+
