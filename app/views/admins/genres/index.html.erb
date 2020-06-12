@@ -4,7 +4,7 @@
 
 <div class="genre_form">
 	<%= form_for @genre_new, url: admins_genres_path do |f| %>
-		<%= f.label :Genre %>
+		<%= f.label :ジャンル %>
 		<%= f.text_field :kind %>
 		<%= f.select :status, Genre.statuses.keys.to_a %>
   		<%= f.submit '追加' %>
@@ -23,7 +23,11 @@
 		<tbody>
 			<% @genres.each do |genre| %>
 			<tr>
-				<td><%= genre.kind %></td>
+				<td>
+					<%= link_to admins_genre_path(genre.id) do %>
+						<%= genre.kind %>
+					<% end %>
+				</td>
 				<td><%= genre.status %></td>
 				<td><div class="btn btn-primary active"><%= link_to "編集", edit_admins_genre_path(genre.id) %></div></td>
 			</tr>

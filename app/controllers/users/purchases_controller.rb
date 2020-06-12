@@ -53,7 +53,7 @@ class Users::PurchasesController < ApplicationController
 
 	def update
 	 	@purchase = Purchase.find(params[:id])
-	 	if @purchase.post.status == "売切"
+	 	if @purchase.post.status == "売切" && @purchase.buying_status == "カート"
 	 		redirect_to users_post_path(@purchase.post.id)
 	 	else
 	 		@purchase.update(purchase_params)

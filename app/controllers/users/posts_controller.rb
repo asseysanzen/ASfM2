@@ -1,6 +1,8 @@
 class Users::PostsController < ApplicationController
 
 	def top
+		@genres = Genre.where.not(status: "無効")
+		@posts = Post.where(status: "販売中")
 	end
 
 	def about
@@ -8,12 +10,14 @@ class Users::PostsController < ApplicationController
 
 	def index
 		@posts = Post.where.not(status: "販売停止").order(id: "DESC") #投稿を新しい順に並べる
+		@genres = Genre.where.not(status: "無効")
 	end
 
 	def show
 		@post = Post.find(params[:id])
 		@purchase = Purchase.new
 		@comment = Comment.new
+		@genres = Genre.where.not(status: "無効")
 	end
 
 	def new
@@ -50,11 +54,13 @@ class Users::PostsController < ApplicationController
 
 	def favorite
 		@posts = current_user.favorite_posts
+		@genres = Genre.where.not(status: "無効")
 	end
 
 	def follow
 		@user = current_user
 		@users = @user.following_user
+		@genres = Genre.where.not(status: "無効")
 	end
 
 	private
