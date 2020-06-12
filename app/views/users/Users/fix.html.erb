@@ -3,12 +3,12 @@
 <%= form_for @user, url: users_users_fix_path do |f| %>
 
   <div class="field">
-    <%= f.label :Icon %><br />
+    <%= f.label :プロフィール画像 %><br />
     <%= f.attachment_field :user_image %>
   </div>
 
   <div class="field">
-    <%= f.label :Name %><br />
+    <%= f.label :名前 %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
@@ -23,12 +23,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :Email %><br />
+    <%= f.label :メール %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Edit" %>
+    <%= f.submit "編集" %>
   </div>
 <% end %>
 

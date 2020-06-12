@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
 
-    resources :genres, only: [:index, :edit, :update, :create]
+    resources :genres, only: [:index, :show, :edit, :update, :create]
 
     resources :payment_methods, only: [:index, :edit, :update, :create]
 

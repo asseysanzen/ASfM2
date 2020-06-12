@@ -47,22 +47,20 @@
 		</thead>
 
 		<tbody>
-			<% @today.each do |purchase| %>
-			<% unless purchase.final_price.nil? %>
 			<tr>
-				<td><%= purchase.created_at %></td>
-				<td><%= purchase.final_price %></td>
+				<td><%= Date.current.strftime('%Y/%m/%d') %></td>
+				<td><%= @today.sum(:final_price) %>円</td>
 			</tr>
-			<% end %>
+			<tr>
+				<% i = 1 %>
+				<% while i <= 26 do %>
+					<td><%= Date.current.ago(i.days).strftime('%Y/%m/%d') %></td>
+				<td><%= @day_i.sum(:final_price) %>円</td>
+				<% i += 1 %>
+			</tr>
 			<% end %>
 		</tbody>
 	</table>
 </div>
-
-<% i = 1 %>
-<% while i <= 26 do %>
-<%= Date.current.ago(i.days).strftime('%Y/%m/%d') %>
-<% i += 1 %>
-<% end %>
-
+<%#= @day_1.sum(:final_price) %>
 

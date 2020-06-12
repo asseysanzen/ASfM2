@@ -1,7 +1,7 @@
 <h4>Following's Posts</h4>
 
 <% @users.each do |user| %>
-    <% @posts = Post.where(user_id: user.id).limit(1).order("created_at DESC") %>
+    <% @posts = Post.where(user_id: user.id).order("created_at DESC") %>
     <% @posts.each do |post| %>
         <div>
       <div>
