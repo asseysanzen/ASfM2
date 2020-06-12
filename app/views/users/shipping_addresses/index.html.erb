@@ -1,5 +1,5 @@
 <div class="midasi">
-	<h3 class="midasitext">Shipping Addresses</h3>
+	<h3 class="midasitext">配送先</h3>
 </div>
 
 <div class="paymethod">
@@ -13,24 +13,43 @@
   		<% end %>
 	</div>
 
-	<div class="genrelists">
-		<table class="table table-hover table-inverse">
-			<thead>
-				<tr>
-					<th>Postal Code</th>
-					<th>Address</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @shipping_addresses.each do |shipping_address| %>
-				<tr>
-					<td><%= shipping_address.postal_code %></td>
-					<td><%= shipping_address.address %>
-					<td><div class="btn btn-primary active"><%= link_to "Edit", edit_users_shipping_address_path(shipping_address.id) %></div></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+	<% if @shipping_addresses.count > 0 %>
+		<div class="genrelists">
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th>Postal Code</th>
+						<th>Address</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @shipping_addresses.each do |shipping_address| %>
+					<tr>
+						<td><%= shipping_address.postal_code %></td>
+						<td><%= shipping_address.address %>
+						<td>
+							<div class="btn btn-primary active">
+								<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id) %>
+							</div>
+						</td>
+						<td>
+							<div class="btn btn-primary active">
+								<%= link_to "削除", users_shipping_address_path(shipping_address.id), method: :delete %>
+							</div>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% else %>
+	<div>
+		<p>
+			配送先が登録されていません。<br>
+			購入手続き中でも新しい配送先を追加することが可能です。
+		</p>
 	</div>
+<% end %>
 </div>

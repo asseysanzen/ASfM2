@@ -1,0 +1,62 @@
+<div class="customer_content">
+	<div class="explain_text">
+		<%= attachment_image_tag user, :user_image, size: "100x100" %>
+	</div>
+</div>
+<div>
+	<%= render 'partials/follow', user: user %>
+</div>
+<div class="customer_content">
+	<div class="explain_text">
+		<%= user.profile %>
+	</div>
+</div>
+<div class="customer_content">
+	<div class="admin_c_label">
+		<p>Twitter</p>
+	</div>
+	<div class="explain_text">
+		<%= link_to "https://twitter.com/#{user.twitter_account}", target: :_blank do %>
+			<%= user.twitter_account %>
+		<% end %>
+	</div>
+</div>
+<div class="customer_content">
+	<div class="admin_c_label">
+		<p>Instagram</p>
+	</div>
+		<div class="explain_text">
+			<%= link_to "https://www.instagram.com/#{user.instagram_account}/", target: :_blank do %>
+				<%= user.instagram_account %>
+			<% end %>
+		</div>
+</div>
+<div class="customer_content">
+	<div class="admin_c_label">
+		<p>フォロワー</p>
+	</div>
+	<div class="explain_text">
+		<% if admin_signed_in? %>
+			<%= user.followed.count %>
+		<% else %>
+			<%= link_to users_user_followers_path(user.id) do %>
+				<%= user.followed.count %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+	<div class="customer_content">
+		<div class="admin_c_label">
+			<p>フォロー</p>
+		</div>
+		<div class="explain_text">
+			<% if admin_signed_in? %>
+				<%= user.follower.count %>
+			<% else %>
+				<%= link_to users_user_follows_path(user.id) do %>
+					<%= user.follower.count %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<h4>売上分析</h4>
+
+<div>
+	<h5>売上</h5>
+	<%= purchases.where(:created_at => 4.weeks.ago..Time.now).sum(:final_price) %>円
+</div>
+
+<div>
+	<h5>過去</h5>
+	<%= purchases.where(:created_at => 8.weeks.ago..4.weeks.ago).sum(:final_price) %>円
+</div>
+
+<div class="genrelists">
+	<table class="table table-hover table-inverse">
+		<thead>
+			<tr>
+				<th>ジャンル</th>
+				<th>売上数</th>
+				<th>過去</th>
+				<th>売上金額</th>
+				<th>過去</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% genres.each do |genre| %>
+			<tr>
+				<% if admin_signed_in? %>
+				<td><%= genre.kind %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 4.weeks.ago..Time.now).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 8.weeks.ago..4.weeks.ago).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 4.weeks.ago..Time.now).sum(:final_price) %>円</td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(:created_at => 8.weeks.ago..4.weeks.ago).sum(:final_price) %>円</td>
+				<% else %>
+				<td><%= genre.kind %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(selling_user: current_user).where(:created_at => 4.weeks.ago..Time.now).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(selling_user: current_user).where(:created_at => 8.weeks.ago..4.weeks.ago).count %></td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(selling_user: current_user).where(:created_at => 4.weeks.ago..Time.now).sum(:final_price) %>円</td>
+				<td><%= genre.purchases.where.not(buying_status: "カート").where(selling_user: current_user).where(:created_at => 8.weeks.ago..4.weeks.ago).sum(:final_price) %>円</td>
+				<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

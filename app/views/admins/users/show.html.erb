@@ -1,72 +1,29 @@
 <div class="midasi">
-	<h4 class="midasitext"><%= @user.name %>さんの会員詳細</h4>
+	<h4 class="midasitext"><%= @user.name %></h4>
 </div>
 
-<div class="customer_contents">
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Icon</p></div>
-			<div class="explain_text">
-				<%= attachment_image_tag @user, :user_image, size: "100x100" %>
-			</div>
+<div class="customer_content">
+	<div class="admin_c_label">
+		<p>ID</p>
+	</div>
+	<div class="explain_text">
+		<%= @user.id %>
+		<div class="c_status">
+			<%= @user.status %>
 		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>ID</p></div>
-			<div class="explain_text">
-				<%= @user.id %>
-				<div class="c_status">
-					<%= @user.status %>
-				</div>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Name</p></div>
-			<div class="explain_text">
-				<%= @user.name %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Twitter</p></div>
-			<div class="explain_text">
-				<%= @user.twitter_account %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Instagram</p></div>
-			<div class="explain_text">
-				<%= @user.instagram_account %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Profile</p></div>
-			<div class="explain_text">
-				<%= @user.profile %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Postal Code</p></div>
-			<div class="explain_text">
-				<%= @user.postal_code.insert(3, '-') %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Address</p></div>
-			<div class="explain_text">
-				<%= @user.address %>
-			</div>
-		</div>
-		<div class="customer_content">
-			<div class="admin_c_label"><p>Email</p></div>
-			<div class="explain_text">
-				<%= @user.email %>
-			</div>
-		</div>
+	</div>
+</div>
 
-		<div class="c_button">
-			<div class="btn btn-primary active">
-				<%= link_to "Edit", edit_admins_user_path(@user.id) %>
-			</div>
-			<div class="btn btn-primary active">
-				<%= link_to "注文一覧", admins_purchases_path %>
-			</div>
-		</div>
+<div>
+	<%= render 'partials/user', user: @user %>
+</div>
+
+<div class="c_button">
+	<div class="btn btn-primary active">
+		<%= link_to "編集", edit_admins_user_path(@user.id) %>
+	</div>
+</div>
+
+<div>
+    <%= render 'partials/posts', posts: @posts %>
 </div>

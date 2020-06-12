@@ -1,123 +1,29 @@
 <div class="midasi">
-  <h3 class="midasitext">投稿商品</h3>
+    <h3 class="midasitext">投稿商品</h3>
 </div>
 
-<div class="admin_picture">
-        <%= attachment_image_tag @post, :image, size:"200x200" %>
-      </div>
-      <div class="favorite">
-        <% if current_user %>
-            <% if @post.favorited_by?(current_user) %>
-                <%= link_to users_post_favorites_path(@post), method: :delete do %>
-                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= @post.favorites.count %>
-                <% end %>
-            <% else %>
-                <%= link_to users_post_favorites_path(@post), method: :post do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <%= @post.favorites.count %>
-                <% end %>
+<%= render 'partials/sidebar', genres: @genres %>
+
+<div>
+    <%= render 'partials/post', post: @post %>
+</div>
+
+<div>
+    <% if current_user %>
+        <% if @post.status == "販売中" %>
+            <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
+                <%= f.hidden_field :post_id, :value => @post.id %>
+                <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
+                <%= f.hidden_field :genre_id, :value => @post.genre_id %>
+                <%= f.hidden_field :shipping_address_id, :value => 1 %>
+                <%= f.submit "購入" %>
             <% end %>
         <% else %>
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <%= @post.favorites.count %>
+            <p>売切</p>
         <% end %>
-        </div>
-    <div class="explain">
-      <div class="explain_content">
-        <div class="admin_label"><p>Item</p></div>
-        <div class="explain_text">
-          <%= @post.item_name %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Description</p></div>
-        <div class="explain_text">
-          <%= @post.description %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Genre</p></div>
-        <div class="explain_text">
-          <%= @post.genre.kind %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Price</p></div>
-        <div class="explain_text">
-          <%= @post.price %>jpy
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Seller</p></div>
-        <div class="explain_text">
-          <%= @post.user.name %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Twitter</p></div>
-        <div class="explain_text">
-          <%= @post.user.twitter_account %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Instagram</p></div>
-        <div class="explain_text">
-          <%= @post.user.instagram_account %>
-        </div>
-      </div>
-      <% if current_user == @post.user %>
-        <% if @post.status == "販売中" %>
-            <div class="btn btn-primary active">
-                <%= link_to "Edit", edit_users_post_path(@post.id) %>
-            </div>
-        <% end %>
-      <% end %>
-      </div>
-
-<% if current_user %>
-<% if @post.status == "販売中" %>
-<div>
-    <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
-        <%= f.hidden_field :post_id, :value => @post.id %>
-        <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
-        <%= f.hidden_field :genre_id, :value => @post.genre_id %>
-        <%= f.hidden_field :shipping_address_id, :value => 1 %>
-        <%= f.submit "購入" %>
     <% end %>
-<% else %>
-    <p>売切</p>
-<% end %>
-<% end %>
 </div>
 
 <div>
-<h4>Comment<i class="fas fa-comments"></i></h4>
-    <div>
-    <% @post.comments.each do |comment| %>
-        <div class="comment_text">
-            <%= link_to users_user_path(@post.user.id) do %>
-                <%= @post.user.name %>
-            <% end %>
-            <%= comment.post_comment %>
-            <% if comment.user == current_user or @post.user == current_user %>
-            <%= link_to '', users_post_comment_path(@post, comment), method: :delete, class:"fas fa-trash fa trash_black " %>
-            <% end %>
-        </div>
-    <% end %>
-    </div>
+    <%= render 'partials/comment', {post: @post, comment: @comment} %>
 </div>
-
-<% if user_signed_in? %>
-<div class="form_comment">
-    <%= form_for [@post, @comment], url: users_post_comments_path(@post) do |f| %>
-        <div class="text_comment">
-            <%= f.text_area :post_comment, rows:'3', class:"form-control comment_form", placeholder: "Comment"%>
-        </div>
-        <div class="submit_comment">
-            <%= f.submit 'Send' %>
-        </div>
-    <% end %>
-</div>
-<% end %>
-

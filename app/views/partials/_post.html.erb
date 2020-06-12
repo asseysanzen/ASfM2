@@ -1,0 +1,103 @@
+<div class="admin_picture">
+    <%= attachment_image_tag post, :image, size:"200x200" %>
+</div>
+
+<div class="favorite">
+    <%= render 'partials/favorite', post: post %>
+</div>
+
+<div class="explain">
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>アイテム</p>
+        </div>
+        <div class="explain_text">
+            <%= post.item_name %>
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>詳細</p>
+        </div>
+        <div class="explain_text">
+            <%= post.description %>
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>ジャンル</p>
+        </div>
+        <div class="explain_text">
+            <%= post.genre.kind %>
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>価格</p>
+        </div>
+        <div class="explain_text">
+            <%= post.price %>円
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>販売者</p>
+        </div>
+        <div class="explain_text">
+            <%= post.user.name %>
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>Twitter</p>
+        </div>
+        <div class="explain_text">
+            <%= link_to "https://twitter.com/#{post.user.twitter_account}", target: :_blank do %>
+                <%= post.user.twitter_account %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="explain_content">
+        <div class="admin_label">
+            <p>Instagram</p>
+        </div>
+        <div class="explain_text">
+            <%= link_to "https://www.instagram.com/#{post.user.instagram_account}/", target: :_blank do %>
+                <%= post.user.instagram_account %>
+            <% end %>
+          </div>
+    </div>
+
+    <% if admin_signed_in? %>
+        <div class="explain_content">
+            <div class="admin_label">
+                <p>ステータス</p>
+            </div>
+            <div class="explain_text">
+                <%= post.status %>
+            </div>
+        </div>
+    <% end %>
+
+    <% if admin_signed_in? %>
+        <div class="btn btn-primary active">
+            <%= link_to "編集", edit_admins_post_path(post.id) %>
+        </div>
+        <div class="btn btn-primary active">
+            <%= link_to "削除", admins_post_path(post.id), method: :delete %>
+        </div>
+    <% elsif current_user == post.user && post.status == "販売中" %>
+        <div class="btn btn-primary active">
+            <%= link_to "編集", edit_users_post_path(post.id) %>
+        </div>
+        <div class="btn btn-primary active">
+            <%= link_to "削除", users_post_path(post.id), method: :delete %>
+        </div>
+    <% end %>
+</div>
