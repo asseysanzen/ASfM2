@@ -1,6 +1,7 @@
 <h3>Top</h3>
 
-<%= render 'layouts/sidebar', genres: @genres %>
+<%= render 'partials/sidebar', genres: @genres %>
+<h4>おすすめ</h4>
   <% @posts.each do |post| %>
     <div>
       <div>

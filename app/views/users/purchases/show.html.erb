@@ -1,43 +1,8 @@
-<div class="midasi">
-	<h3 class="midasitext">購入詳細</h3>
+<div>
+    <%= render 'partials/history', purchase: @purchase %>
 </div>
 
-<div class="admin_picture">
-        <%= attachment_image_tag @purchase.post, :image, size:"200x200" %>
-</div>
-    <div class="explain">
-      <div class="explain_content">
-        <div class="admin_label"><p>Item</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.item_name %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Description</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.description %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Genre</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.genre.kind %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Price</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.price %>jpy
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Seller</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.user.name %>
-        </div>
-      </div>
-      </div>
-
+<div>
     <% if @purchase.buying_status == "到着待ち" && @purchase.selling_status == "入金確認" && @purchase.selling_user == current_user %>
         <%= form_for @purchase, url: users_purchase_path(@purchase.id) do |f| %>
             <%= f.hidden_field :selling_status, :value => "配送済" %>
@@ -49,6 +14,7 @@
             <%= f.submit '商品到着連絡' %>
         <% end %>
     <% end %>
+</div>
 
 <table class="table table-hover table-inverse">
 	<thead>

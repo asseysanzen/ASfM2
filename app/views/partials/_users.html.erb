@@ -1,0 +1,51 @@
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<% if admin_signed_in? %>
+				<th>ID</th>
+				<th></th>
+				<th>Name</th>
+				<th>Twitter</th>
+				<th>Instagram</th>
+				<th>Status</th>
+			<% else %>
+				<th></th>
+				<th>Name</th>
+				<th>Twitter</th>
+				<th>Instagram</th>
+				<th></th>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% users.each do |user| %>
+			<tr>
+				<% if admin_signed_in? %>
+					<td><%= user.id %></td>
+					<td>
+						<%= link_to admins_user_path(user.id) do %>
+							<%= attachment_image_tag user, :user_image, size: "80x80" %>
+						<% end %>
+					</td>
+					<td><%= user.name %></td>
+					<td><%= user.twitter_account %></td>
+					<td><%= user.instagram_account %></td>
+					<td><%= user.status %></td>
+				<% else %>
+					<td>
+						<%= link_to users_user_path(user.id) do %>
+							<%= attachment_image_tag user, :user_image, size: "80x80" %>
+						<% end %>
+					</td>
+					<td><%= user.name %></td>
+					<td><%= user.twitter_account %></td>
+					<td><%= user.instagram_account %></td>
+					<td>
+						<%= render 'partials/follow', user: user %>
+					</td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

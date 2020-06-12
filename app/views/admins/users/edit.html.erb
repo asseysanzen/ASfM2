@@ -7,7 +7,7 @@
 <%= form_for @user, url: admins_user_path(@user.id) do |f| %>
 	<div class="customer_id">
 		<div class="admin_c_label">
-			<%= f.label :Icon %>
+			<%= f.label :プロフィール画像 %>
 		</div>
     	<%= f.attachment_field :user_image %>
     </div>
@@ -64,7 +64,7 @@
 			<%= f.select :status, User.statuses.keys.to_a %>
 		</div>
 		<div class="c_button">
-  			<%= f.submit 'Update' %>
+  			<%= f.submit '更新' %>
   		</div>
 <% end %>
 </div>

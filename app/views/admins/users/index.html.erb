@@ -1,29 +1,7 @@
 <div class="midasi">
-	<h3 class="midasitext">会員一覧</h3>
+	<h3 class="midasitext">ユーザー</h3>
 </div>
 
-<table class="table table-hover table-inverse">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th></th>
-			<th>Name</th>
-			<th>Twitter</th>
-			<th>Instagram</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @users.each do |user| %>
-		<tr>
-			<td><%= user.id %></td>
-			<td><%= attachment_image_tag user, :user_image, size: "80x80" %></td>
-			<td><a href="<%= admins_user_path(user.id) %>"><%= user.name %></a></td>
-			<td><%= user.twitter_account %></td>
-			<td><%= user.instagram_account %></td>
-			<td><%= user.status %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<div>
+	<%= render 'partials/users', users: @users %>
+</div>

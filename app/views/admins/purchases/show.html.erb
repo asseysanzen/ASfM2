@@ -1,42 +1,6 @@
-<div class="midasi">
-	<h3 class="midasitext">購入詳細</h3>
+<div>
+    <%= render 'partials/history', purchase: @purchase %>
 </div>
-
-<div class="admin_picture">
-        <%= attachment_image_tag @purchase.post, :image, size:"200x200" %>
-</div>
-    <div class="explain">
-      <div class="explain_content">
-        <div class="admin_label"><p>Item</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.item_name %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Description</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.description %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Genre</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.genre.kind %>
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Price</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.price %>jpy
-        </div>
-      </div>
-      <div class="explain_content">
-        <div class="admin_label"><p>Seller</p></div>
-        <div class="explain_text">
-          <%= @purchase.post.user.name %>
-        </div>
-      </div>
-      </div>
 
 <table class="table table-hover table-inverse">
 	<thead>
@@ -61,29 +25,29 @@
 </table>
 
 <table class="table table-hover table-inverse">
-  <thead>
-    <tr>
-      <th>販売ステータス</th>
-      <th></th>
-      <th></th>
-      <th>購入ステータス</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <thead>
+        <tr>
+            <th>販売ステータス</th>
+            <th></th>
+            <th></th>
+            <th>購入ステータス</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td><%= @purchase.selling_status %></td>
-      <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
-      <td><%= f.select :selling_status, Purchase.selling_statuses.keys.to_a %></td>
-      <td><%= f.submit '変更' %></td>
-      <% end %>
-      <td><%= @purchase.buying_status %></td>
-      <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
-      <td><%= f.select :buying_status, Purchase.buying_statuses.keys.to_a %></td>
-      <td><%= f.submit '変更' %></td>
-      <% end %>
-    </tr>
-  </tbody>
+    <tbody>
+        <tr>
+            <td><%= @purchase.selling_status %></td>
+            <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
+            <td><%= f.select :selling_status, Purchase.selling_statuses.keys.to_a %></td>
+            <td><%= f.submit '変更' %></td>
+            <% end %>
+            <td><%= @purchase.buying_status %></td>
+            <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
+            <td><%= f.select :buying_status, Purchase.buying_statuses.keys.to_a %></td>
+            <td><%= f.submit '変更' %></td>
+            <% end %>
+        </tr>
+    </tbody>
 </table>
