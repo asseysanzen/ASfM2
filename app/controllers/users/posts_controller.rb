@@ -2,14 +2,14 @@ class Users::PostsController < ApplicationController
 
 	def top
 		@genres = Genre.where.not(status: "無効")
-		@posts = Post.where(status: "販売中")
+		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"})
 	end
 
 	def about
 	end
 
 	def index
-		@posts = Post.where.not(status: "販売停止").order(id: "DESC") #投稿を新しい順に並べる
+		@posts = Post.joins(:user).where.not(posts: {status: "販売停止"}).where(users: {status: "有効"}).order(id: "DESC") #投稿を新しい順に並べる
 		@genres = Genre.where.not(status: "無効")
 	end
 
