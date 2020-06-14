@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   attachment :user_image
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, foreign_key: :id, primary_key: :user_id, dependent: :destroy
   has_many :purchases
   has_many :shipping_addresses, dependent: :destroy
   has_many :favorites, dependent: :destroy

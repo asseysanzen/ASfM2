@@ -6,7 +6,7 @@ class Users::UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@posts = Post.where(user_id: params[:id], status: 0)
+		@posts = Post.where(user_id: params[:id]).where.not(status: 1)
 	end
 
 	def mypage

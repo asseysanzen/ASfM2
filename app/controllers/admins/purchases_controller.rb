@@ -9,11 +9,9 @@ class Admins::PurchasesController < ApplicationController
 		@genres = Genre.where(id: genre_sales_ids)
 		@purchases = Purchase.where.not(buying_status: "カート")
 		@today = Purchase.where.not(buying_status: "カート").where(created_at: DateTime.now.beginning_of_day..DateTime.now.end_of_day)
-		#@day_1 = Purchase.where.not(buying_status: "カート").where(created_at: DateTime.now.beginning_of_day - 1.day..DateTime.now.end_of_day - 1.day)
-		i = 1
-		while i <= 27 do
-			@day_i = Purchase.where.not(buying_status: "カート").where(created_at: DateTime.now.beginning_of_day - i.day..DateTime.now.end_of_day - i.day)
-			i += 1
+		@histories = []
+		1.upto(27) do |i|
+		  @histories << Purchase.where.not(buying_status: "カート").where(created_at: DateTime.now.beginning_of_day - i.day..DateTime.now.end_of_day - i.day)
 		end
 	end
 
