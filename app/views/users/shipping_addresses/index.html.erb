@@ -5,9 +5,9 @@
 <div class="paymethod">
 	<div class="genre_form">
 		<%= form_for @shipping_address_new, url: users_shipping_addresses_path do |f| %>
-			<%= f.label :Postal_Code %>
+			<%= f.label :郵便番号 %>
 			<%= f.text_field :postal_code %>
-			<%= f.label :Address %>
+			<%= f.label :住所 %>
 			<%= f.text_field :address %>
   			<%= f.submit 'Create' %>
   		<% end %>
@@ -18,8 +18,8 @@
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
-						<th>Postal Code</th>
-						<th>Address</th>
+						<th>郵便番号</th>
+						<th>住所</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -30,14 +30,10 @@
 						<td><%= shipping_address.postal_code %></td>
 						<td><%= shipping_address.address %>
 						<td>
-							<div class="btn btn-primary active">
-								<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id) %>
-							</div>
+							<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"btn btn-primary active" %>
 						</td>
 						<td>
-							<div class="btn btn-primary active">
-								<%= link_to "削除", users_shipping_address_path(shipping_address.id), method: :delete %>
-							</div>
+							<%= link_to "削除", users_shipping_address_path(shipping_address.id), method: :delete, class:"btn btn-primary active" %>
 						</td>
 					</tr>
 					<% end %>

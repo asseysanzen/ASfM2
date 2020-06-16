@@ -1,29 +1,27 @@
-<div class="midasi">
-    <h3 class="midasitext">投稿商品</h3>
-</div>
+<div class="row">
+    <%= render 'partials/sidebar', genres: @genres %>
 
-<%= render 'partials/sidebar', genres: @genres %>
+    <div class="col-xs-10">
+        <div>
+            <%= render 'partials/post', post: @post %>
+        </div>
 
-<div>
-    <%= render 'partials/post', post: @post %>
-</div>
-
-<div>
-    <% if current_user %>
-        <% if @post.status == "販売中" %>
-            <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
-                <%= f.hidden_field :post_id, :value => @post.id %>
-                <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
-                <%= f.hidden_field :genre_id, :value => @post.genre_id %>
-                <%= f.hidden_field :shipping_address_id, :value => 1 %>
-                <%= f.submit "購入" %>
+        <div class="post_button">
+            <% if current_user %>
+                <% if @post.status == "販売中" && @post.user != current_user %>
+                    <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
+                        <%= f.hidden_field :post_id, :value => @post.id %>
+                        <%= f.hidden_field :selling_user_id, :value => @post.user_id %>
+                        <%= f.hidden_field :genre_id, :value => @post.genre_id %>
+                        <%= f.hidden_field :shipping_address_id, :value => 1 %>
+                        <%= f.submit "購入" %>
+                    <% end %>
+                <% end %>
             <% end %>
-        <% else %>
-            <p>売切</p>
-        <% end %>
-    <% end %>
-</div>
+        </div>
 
-<div>
-    <%= render 'partials/comment', {post: @post, comment: @comment} %>
+        <div>
+            <%= render 'partials/comment', {post: @post, comment: @comment} %>
+        </div>
+    </div>
 </div>
