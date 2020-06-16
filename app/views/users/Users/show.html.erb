@@ -1,11 +1,13 @@
-<div class="midasi">
-	<h4 class="midasitext"><%= @user.name %></h4>
+<div class="user_information">
+	<div class="name">
+		<h3><%= @user.name %></h3>
+	</div>
+
+	<div>
+		<%= render 'partials/user', user: @user %>
+	</div>
 </div>
 
-<div>
-	<%= render 'partials/user', user: @user %>
-</div>
-
-<div>
+<div class="user_posts">
     <%= render 'partials/posts', posts: @posts %>
 </div>

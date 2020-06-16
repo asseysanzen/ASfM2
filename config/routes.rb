@@ -61,6 +61,9 @@ Rails.application.routes.draw do
 
     resources :purchases, only: [:index, :show, :update]
 
+    get 'posts/sale' => 'posts#sale' #販売中商品一覧
+    get 'posts/stop' => 'posts#stop' #販売停止中商品一覧
+    get 'posts/sold_out' => 'posts#sold_out' #売切商品一覧
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
 
     resources :genres, only: [:index, :show, :edit, :update, :create]

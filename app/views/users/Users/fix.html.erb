@@ -23,6 +23,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :プロフィール %><br />
+    <%= f.text_area :profile, autofocus: true, autocomplete: "profile" %>
+  </div>
+
+  <div class="field">
     <%= f.label :メール %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

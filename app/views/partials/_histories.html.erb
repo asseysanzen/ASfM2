@@ -4,9 +4,9 @@
 			<th>購入日時</th>
 			<th>商品</th>
 			<th>販売者</th>
-			<th>販売ステータス</th>
+			<th>ステータス</th>
 			<th>購入者</th>
-			<th>購入ステータス</th>
+			<th>ステータス</th>
 		</tr>
 	</thead>
 
@@ -24,8 +24,8 @@
 			<td><a href="<%= admins_purchase_path(purchase.id) %>"><%= purchase.created_at%></a></td>
 			<td><%= purchase.post.item_name %></td>
 			<td><%= purchase.post.user.name %></td>
-			<td><%= purchase.buying_user.name %></td>
 			<td><%= purchase.selling_status %></td>
+			<td><%= purchase.buying_user.name %></td>
 			<td><%= purchase.buying_status %></td>
 			<% end %>
 		</tr>

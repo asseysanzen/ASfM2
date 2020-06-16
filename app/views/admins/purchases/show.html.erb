@@ -17,37 +17,56 @@
 		<tr>
 			<td><a href="<%= admins_user_path(@purchase.selling_user.id) %>"><%= @purchase.selling_user.name %></a></td>
 			<td><a href="<%= admins_user_path(@purchase.buying_user.id) %>"><%= @purchase.buying_user.name %></a></td>
-			<td><%= @purchase.final_postage %></td>
-			<td><%= @purchase.final_price %></td>
-			<td><%= @purchase.final_postage + @purchase.final_price %></td>
+			<td><%= @purchase.final_postage %>円</td>
+			<td><%= @purchase.final_price %>円</td>
+			<td><%= @purchase.final_postage + @purchase.final_price %>円</td>
 		</tr>
 	</tbody>
 </table>
 
-<table class="table table-hover table-inverse">
-    <thead>
-        <tr>
-            <th>販売ステータス</th>
-            <th></th>
-            <th></th>
-            <th>購入ステータス</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
+<div class="row">
+    <div class="col-xs-6">
+        <table class="table table-hover table-inverse">
+            <thead>
+                <tr>
+                    <th>販売ステータス</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
 
-    <tbody>
-        <tr>
-            <td><%= @purchase.selling_status %></td>
-            <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
-            <td><%= f.select :selling_status, Purchase.selling_statuses.keys.to_a %></td>
-            <td><%= f.submit '変更' %></td>
-            <% end %>
-            <td><%= @purchase.buying_status %></td>
-            <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
-            <td><%= f.select :buying_status, Purchase.buying_statuses.keys.to_a %></td>
-            <td><%= f.submit '変更' %></td>
-            <% end %>
-        </tr>
-    </tbody>
-</table>
+            <tbody>
+                <tr>
+                    <td><%= @purchase.selling_status %></td>
+                    <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
+                    <td><%= f.select :selling_status, Purchase.selling_statuses.keys.to_a %></td>
+                    <td><%= f.submit '変更' %></td>
+                    <% end %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-xs-6">
+        <table class="table table-hover table-inverse">
+            <thead>
+                <tr>
+                    <th>購入ステータス</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><%= @purchase.buying_status %></td>
+                    <%= form_for @purchase, url: admins_purchase_path(@purchase.id) do |f| %>
+                    <td><%= f.select :buying_status, Purchase.buying_statuses.keys.to_a %></td>
+                    <td><%= f.submit '変更' %></td>
+                    <% end %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
