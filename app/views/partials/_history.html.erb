@@ -1,49 +1,58 @@
-<div class="midasi">
-	<h3 class="midasitext">購入詳細</h3>
+<div class="post">
+    <div class="post_image">
+        <% if admin_signed_in? %>
+            <%= link_to admins_post_path(purchase.post.id) do %>
+                <%= attachment_image_tag purchase.post, :image, size:"300x300" %>
+            <% end %>
+        <% else %>
+            <%= link_to users_post_path(purchase.post.id) do %>
+                <%= attachment_image_tag purchase.post, :image, size:"300x300" %>
+            <% end %>
+        <% end %>
+    </div>
+
+    <div class="price_information">
+        <%= purchase.post.price %>円
+    </div>
 </div>
 
-<div class="admin_picture">
-    <% if admin_signed_in? %>
-        <%= link_to admins_post_path(purchase.post.id) do %>
-            <%= attachment_image_tag purchase.post, :image, size:"200x200" %>
-        <% end %>
-    <% else %>
-        <%= link_to users_post_path(purchase.post.id) do %>
-            <%= attachment_image_tag purchase.post, :image, size:"200x200" %>
-        <% end %>
-    <% end %>
-</div>
-<div class="explain">
-    <div class="explain_content">
-        <div class="admin_label">
+<div class="post_information">
+    <div class="information_content">
+        <div class="information_label">
             <p>アイテム</p>
         </div>
-        <div class="explain_text">
+        <div class="information_text">
             <%= purchase.post.item_name %>
         </div>
     </div>
-    <div class="explain_content">
-        <div class="admin_label">
-            <p>詳細</p>
-        </div>
-        <div class="explain_text">
-            <%= purchase.post.description %>
-        </div>
-    </div>
-    <div class="explain_content">
-        <div class="admin_label">
+
+    <div class="information_content">
+        <div class="information_label">
             <p>ジャンル</p>
         </div>
-        <div class="explain_text">
+        <div class="information_text">
             <%= purchase.post.genre.kind %>
         </div>
     </div>
-    <div class="explain_content">
-        <div class="admin_label">
-            <p>価格</p>
+
+    <div class="information_content">
+        <div class="information_label">
+            <p>詳細</p>
         </div>
-        <div class="explain_text">
-            <%= purchase.post.price %>円
+        <div class="information_text">
+            <%= purchase.post.description %>
+        </div>
+    </div>
+
+    <div class="information_content">
+        <div class="information_label">
+           <p>配送先</p>
+        </div>
+        <div class="information_text">
+            <%= purchase.shipping_address.postal_code %>
+        </div>
+        <div class="information_text">
+            <%= purchase.shipping_address.address %>
         </div>
     </div>
 </div>

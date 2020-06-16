@@ -37,59 +37,90 @@ header{
 }
 
 .sidebar{
-	font-size: large;
+	font-size: medium;
 }
 
-.icon{
-	border-radius: 50%;
+.header_icon{
+	font-size: 35px;
 }
 
-.content{
-	display: inline-block;
+#hm-icon{
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+  margin-top: 50px;
 }
 
-.content_text{
-	display: inline-block;
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
 }
 
-.content_label{
-	display: inline-block;
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
 }
 
-
-.icon{
-	margin-left: auto;
-    margin-right: auto;
-    height: 200px;
-    width: 200px;
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
 }
 
-.follow{
-	text-align: center;
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
 }
 
-.infomation{
-	text-align: center;
-	font-size: large;
+.menu-trigger span:nth-of-type(2) {
+  top: 20px;
 }
 
-.name{
-	text-align: center;
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
 }
 
-.profile{
-	text-align: center;
+.menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #fff;
 }
 
-.addproduct{
-	text-align: right;
-	font-size: xx-large;
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
 }
 
-.user_information{
-	border-bottom: solid 5px gray;
+.menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #fff;
 }
 
-.user_posts{
-	margin-top: 40px;
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+}
+
+#sp-menu li{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#sp-menu a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }

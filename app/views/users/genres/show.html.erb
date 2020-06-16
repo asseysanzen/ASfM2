@@ -1,8 +1,8 @@
-<h2><%= @genre.kind %></h2>
-
+<div class="headline">
+	<h3 class="headline_text"><%= @genre.kind %></h3>
+</div>
 
 <%= render 'partials/sidebar', genres: @genres %>
-
 
 <div>
     <%= render 'partials/posts', posts: @posts %>

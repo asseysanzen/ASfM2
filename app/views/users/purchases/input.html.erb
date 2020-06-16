@@ -1,4 +1,6 @@
-<h4>情報入力</h4>
+<div class="headline">
+    <h3 class="headline_text">情報入力</h3>
+</div>
 
 <% unless  ShippingAddress.where(user_id: current_user.id).blank? %>
 <%= form_with model:@purchase, local: true, url: users_purchase_path(@purchase.id) do |f| %>

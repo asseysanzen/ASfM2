@@ -16,9 +16,13 @@
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <% if admin_signed_in? %>
-            <%= link_to 'ASfM', admins_top_path %>
+            <div class="header_icon">
+              <%= link_to 'ASfM', admins_top_path %>
+            </div>
           <% else %>
-            <%= link_to 'ASfM', root_path %>
+            <div class="header_icon">
+              <%= link_to 'ASfM', root_path %>
+            </div>
           <% end %>
         </nav>
         <nav>
@@ -45,7 +49,27 @@
             <% end %>
           </ul>
         </nav>
-
+        <% if user_signed_in? %>
+        <div id="sp-menu">
+          <h2>Mypage</h2>
+          <ul>
+            <li><a href="<%= users_posts_favorite_path %>">お気に入り</a></li>
+            <li><a href="<%= users_posts_follow_path %>">フォロー投稿</a></li>
+            <li><a href="<%= users_purchases_buy_path %>">購入履歴</a></li>
+            <li><a href="<%= users_purchases_sell_path %>">販売履歴</a></li>
+            <li><a href="<%= users_purchases_data_path %>">売上分析</a></li>
+            <li><a href="<%= users_users_fix_path %>">プロフィール編集</a></li>
+            <li><a href="<%= users_shipping_addresses_path %>">配送先</a></li>
+          </ul>
+        </div>
+        <div id="hm-icon">
+          <a class="menu-trigger" href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+        <% end %>
       </div>
     </header>
 
@@ -55,5 +79,7 @@
         <%= yield %>
       </div>
     </div>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/application.js"></script>
   </body>
 </html>

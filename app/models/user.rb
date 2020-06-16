@@ -21,6 +21,8 @@ class User < ApplicationRecord
 
   enum status:{有効:true, 退会済:false}
 
+  validates :name, presence: true
+
   def follow(user_id)
     follower.create(followed_id: user_id)
   end

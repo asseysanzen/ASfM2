@@ -11,6 +11,11 @@ class Post < ApplicationRecord
 
 	attachment :image
 
+	validates :item_name, presence: true
+	validates :description, presence: true
+	validates :price, presence: true
+	validates :image, presence: true
+
 	def favorited_by?(user) #投稿にログイン中ユーザーがいいねしているかどうか
         favorites.where(user_id: user.id).exists?
     end
