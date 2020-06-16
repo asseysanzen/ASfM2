@@ -11,7 +11,7 @@ class Users::UsersController < ApplicationController
 
 	def mypage
 		@user = current_user
-		@posts = @user.posts
+		@posts = Post.where(user_id: current_user.id)
 	end
 
 	def fix
@@ -30,7 +30,7 @@ class Users::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :user_image, :twitter_account, :instagram_account, :email, :status)
+		params.require(:user).permit(:name, :user_image, :twitter_account, :instagram_account, :email, :status, :profile)
 	end
 
 end

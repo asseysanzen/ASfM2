@@ -1,55 +1,45 @@
-<div class="customer_content">
-	<div class="explain_text">
-		<%= attachment_image_tag user, :user_image, size: "100x100" %>
-	</div>
+<div class="icon">
+	<%= attachment_image_tag(user, :user_image, size: "200x200", fallback: "no_image.jpg") %>
 </div>
-<div>
+<div class="follow">
 	<%= render 'partials/follow', user: user %>
 </div>
-<div class="customer_content">
-	<div class="explain_text">
+<div class="profile">
+	<div class="content_text">
 		<%= user.profile %>
 	</div>
 </div>
-<div class="customer_content">
-	<div class="admin_c_label">
-		<p>Twitter</p>
+
+<div class="infomation">
+	<div class="content">
+		<div class="content_text">
+			<%= link_to "#{user.twitter_account}", "https://twitter.com/#{user.twitter_account}", target: :_blank, class:"fab fa-twitter"  %>
+		</div>
 	</div>
-	<div class="explain_text">
-		<%= link_to "https://twitter.com/#{user.twitter_account}", target: :_blank do %>
-			<%= user.twitter_account %>
-		<% end %>
+	<div class="content">
+		<div class="content_text">
+			<%= link_to "#{user.instagram_account}", "https://www.instagram.com/#{user.instagram_account}/", target: :_blank, class:"fab fa-instagram" %>
+		</div>
 	</div>
-</div>
-<div class="customer_content">
-	<div class="admin_c_label">
-		<p>Instagram</p>
-	</div>
-		<div class="explain_text">
-			<%= link_to "https://www.instagram.com/#{user.instagram_account}/", target: :_blank do %>
-				<%= user.instagram_account %>
+	<div class="content">
+		<div class="content_label">
+			<p>フォロワー</p>
+		</div>
+		<div class="content_text">
+			<% if admin_signed_in? %>
+				<%= user.followed.count %>
+			<% else %>
+				<%= link_to users_user_followers_path(user.id) do %>
+					<%= user.followed.count %>
+				<% end %>
 			<% end %>
 		</div>
-</div>
-<div class="customer_content">
-	<div class="admin_c_label">
-		<p>フォロワー</p>
 	</div>
-	<div class="explain_text">
-		<% if admin_signed_in? %>
-			<%= user.followed.count %>
-		<% else %>
-			<%= link_to users_user_followers_path(user.id) do %>
-				<%= user.followed.count %>
-			<% end %>
-		<% end %>
-	</div>
-</div>
-	<div class="customer_content">
-		<div class="admin_c_label">
+	<div class="content">
+		<div class="content_label">
 			<p>フォロー</p>
 		</div>
-		<div class="explain_text">
+		<div class="content_text">
 			<% if admin_signed_in? %>
 				<%= user.follower.count %>
 			<% else %>

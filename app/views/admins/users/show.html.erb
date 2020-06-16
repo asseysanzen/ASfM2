@@ -1,5 +1,5 @@
-<div class="midasi">
-	<h4 class="midasitext"><%= @user.name %></h4>
+<div class="headline">
+	<h3 class="headline_text"><%= @user.name %></h3>
 </div>
 
 <div class="customer_content">
@@ -19,9 +19,7 @@
 </div>
 
 <div class="c_button">
-	<div class="btn btn-primary active">
-		<%= link_to "編集", edit_admins_user_path(@user.id) %>
-	</div>
+	<%= link_to "編集", edit_admins_user_path(@user.id), class:"btn btn-primary" %>
 </div>
 
 <div>

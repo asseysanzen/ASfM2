@@ -1,50 +1,49 @@
-<div>
-	<%= render 'partials/data', {purchases: @purchases, genres: @genres} %>
+<%= render 'partials/data', {purchases: @purchases, genres: @genres} %>
+
+<div class="row no-gutters">
+	<div class="col-xs-6">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>日付</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><%= Date.current.strftime('%Y/%m/%d') %></td>
+				</tr>
+				<% i = 1 %>
+				<% while i <= 27 do %>
+				<tr>
+					<td><%= Date.current.ago(i.days).strftime('%Y/%m/%d') %></td>
+					<% i += 1 %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-xs-6">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>売上</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><%= @today.sum(:final_price) %>円</td>
+				</tr>
+				<% @histories.each do |history| %>
+				<tr>
+					<td><%= history.sum(:final_price) %>円</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
-
-<div class="genrelists">
-	<table class="table table-hover table-inverse">
-		<thead>
-			<tr>
-				<th>日付</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr>
-				<td><%= Date.current.strftime('%Y/%m/%d') %></td>
-			</tr>
-			<% i = 1 %>
-			<% while i <= 27 do %>
-			<tr>
-				<td><%= Date.current.ago(i.days).strftime('%Y/%m/%d') %></td>
-				<% i += 1 %>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
-
-<div class="genrelists">
-	<table class="table table-hover table-inverse">
-		<thead>
-			<tr>
-				<th>売上</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr>
-				<td><%= @today.sum(:final_price) %>円</td>
-			</tr>
-			<% @histories.each do |history| %>
-			<tr>
-				<td><%= history.sum(:final_price) %>円</td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
-
 
 

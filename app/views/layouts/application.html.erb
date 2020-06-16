@@ -13,8 +13,8 @@
 
   <body>
      <header>
-      <div>
-        <nav>
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
           <% if admin_signed_in? %>
             <%= link_to 'ASfM', admins_top_path %>
           <% else %>
@@ -22,7 +22,7 @@
           <% end %>
         </nav>
         <nav>
-          <ul>
+          <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= link_to 'About', users_posts_about_path %></li>
               <li><%= link_to 'マイページ', users_users_mypage_path %></li>
@@ -49,9 +49,11 @@
       </div>
     </header>
 
-    <div class="main">
+    <div class="container">
+      <div class="main">
         <p id="notice"><%= notice %></p>
         <%= yield %>
+      </div>
     </div>
   </body>
 </html>

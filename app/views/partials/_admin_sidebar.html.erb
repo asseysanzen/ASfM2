@@ -1,0 +1,12 @@
+<div class="col-xs-2" style="background-color: black;">
+	<div class="sidebar">
+		<% genres.each do |genre| %>
+		    <div class="genre-name">
+		        <a href="<%= admins_genre_path(genre.id) %>"><%= genre.kind %></a>
+		    </div>
+		<% end %>
+		<div class="genre-name"><%= link_to "販売中", admins_posts_sale_path %></div>
+		<div class="genre-name"><%= link_to "販売停止中", admins_posts_stop_path %></div>
+		<div class="genre-name"><%= link_to "売切", admins_posts_sold_out_path %></div>
+	</div>
+</div>
