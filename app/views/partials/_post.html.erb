@@ -3,7 +3,7 @@
         <%= attachment_image_tag post, :image, size:"300x300" %>
     </div>
 
-    <div class="favorite">
+    <div class="favorite post_<%= post.id %>">
         <%= render 'partials/favorite', post: post %>
     </div>
 
@@ -75,9 +75,9 @@
 
     <% if admin_signed_in? %>
         <%= link_to "編集", edit_admins_post_path(post.id), class:"btn btn-primary active" %>
-        <%= link_to "削除", admins_post_path(post.id), method: :delete, class:"btn btn-primary active" %>
+        <%= link_to "削除", admins_post_path(post.id), method: :delete, class:"btn btn-danger active" %>
     <% elsif current_user == post.user && post.status == "販売中" %>
         <%= link_to "編集", edit_users_post_path(post.id), class:"btn btn-primary active" %>
-        <%= link_to "削除", users_post_path(post.id), method: :delete, class:"btn btn-primary active" %>
+        <%= link_to "削除", users_post_path(post.id), method: :delete, class:"btn btn-danger active" %>
     <% end %>
 </div>

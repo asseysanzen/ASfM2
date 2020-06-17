@@ -1,0 +1,2 @@
+$("textarea").val("");
+$(".comment_<%= @post.id %>").html("<%= j(render 'partials/comment',  post: @post, comment: @comment ) %>")

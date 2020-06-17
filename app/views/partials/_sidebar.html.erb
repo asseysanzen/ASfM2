@@ -4,8 +4,8 @@
 		 	<div class="genre-name"><a href="<%= users_genre_path(genre.id) %>"><%= genre.kind %></a></div>
 		<% end %>
 		<% if user_signed_in? %>
-		<div class="genre-name"><%= link_to "お気に入り", users_posts_favorite_path %></div>
-		<div class="genre-name"><%= link_to "フォローアイテム", users_posts_follow_path %></div>
+		<div class="genre-name"><%= link_to "お気に入り", users_posts_favorite_path, class:"glyphicon glyphicon-thumbs-up" %></div>
+		<div class="genre-name"><%= link_to "フォローアイテム", users_posts_follow_path, class:"glyphicon glyphicon-ok-circle" %></div>
 		<% end %>
 	</div>
 </div>

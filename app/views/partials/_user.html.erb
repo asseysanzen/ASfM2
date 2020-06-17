@@ -1,7 +1,7 @@
 <div class="icon">
 	<%= attachment_image_tag(user, :user_image, size: "200x200", fallback: "no_image.jpg") %>
 </div>
-<div class="follow">
+<div class="follow user_<%= user.id %>">
 	<%= render 'partials/follow', user: user %>
 </div>
 <div class="profile">

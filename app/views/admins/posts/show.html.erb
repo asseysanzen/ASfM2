@@ -10,7 +10,7 @@
 		    <%= render 'partials/post', post: @post %>
 		</div>
 
-		<div>
+		<div class="comment_<%= @post.id %>">
 		    <%= render 'partials/comment', {post: @post, comment: @comment} %>
 		</div>
 	</div>
