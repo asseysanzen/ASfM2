@@ -1,4 +1,4 @@
-<table class="table table-hover table-inverse">
+<table class="table table-hover table-inverse users_table">
 	<thead>
 		<tr>
 			<% if admin_signed_in? %>
@@ -30,7 +30,7 @@
 						<% end %>
 						</div>
 					</td>
-					<td><%= user.name %></td>
+					<td><div class="td_content"><%= user.name %></div></td>
 					<td><%= user.twitter_account %></td>
 					<td><%= user.instagram_account %></td>
 					<td><%= user.status %></td>
@@ -43,7 +43,7 @@
 					<td><%= user.name %></td>
 					<td><%= user.twitter_account %></td>
 					<td><%= user.instagram_account %></td>
-					<td>
+					<td class="user_<%= user.id %>">
 						<%= render 'partials/follow', user: user %>
 					</td>
 				<% end %>

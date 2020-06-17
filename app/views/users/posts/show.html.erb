@@ -20,8 +20,20 @@
             <% end %>
         </div>
 
-        <div>
+        <div class="comment_<%= @post.id %>">
             <%= render 'partials/comment', {post: @post, comment: @comment} %>
         </div>
+        <% if user_signed_in? %>
+            <div class="form_comment">
+                <%= form_for [@post, @comment], url: users_post_comments_path(@post), data: {remote: true} do |f| %>
+                    <div class="text_comment">
+                        <%= f.text_area :post_comment, rows:'3', class:"form-control comment_form", placeholder: "Comment"%>
+                    </div>
+                    <div class="submit_comment">
+                        <%= f.submit '送信' %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
     </div>
 </div>
