@@ -16,7 +16,7 @@ class Admins::PurchasesController < ApplicationController
 	end
 
 	def index
-		@purchases = Purchase.where.not(buying_status: "カート").order(id: "DESC")
+		@purchases = Purchase.where.not(buying_status: "カート").order(id: "DESC").page(params[:page]).per(10)
 	end
 
 	def show

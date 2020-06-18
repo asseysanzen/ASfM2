@@ -2,14 +2,14 @@ class Users::PostsController < ApplicationController
 
 	def top
 		@genres = Genre.where.not(status: "無効")
-		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"})
+		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).order(id: "DESC").page(params[:page]).per(6)
 	end
 
 	def about
 	end
 
 	def index
-		@posts = Post.joins(:user).where.not(posts: {status: "販売停止"}).where(users: {status: "有効"}).order(id: "DESC") #投稿を新しい順に並べる
+		@posts = Post.joins(:user).where.not(posts: {status: "販売停止"}).where(users: {status: "有効"}).order(id: "DESC").page(params[:page]).per(12) #投稿を新しい順に並べる
 		@genres = Genre.where.not(status: "無効")
 	end
 
@@ -53,7 +53,7 @@ class Users::PostsController < ApplicationController
 	end
 
 	def favorite
-		@posts = current_user.favorite_posts
+		@posts = current_user.favorite_posts.order(id: "DESC").page(params[:page]).per(12)
 		@genres = Genre.where.not(status: "無効")
 	end
 

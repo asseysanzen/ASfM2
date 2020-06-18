@@ -6,7 +6,7 @@
 
 <% if @users.count > 0 %>
 	<% @users.each do |user| %>
-    	<% @posts = Post.where(user_id: user.id).order("created_at DESC") %>
+    	<% @posts = Post.where(user_id: user.id).order("created_at DESC").page(params[:page]).per(12) %>
     	<div>
         	<%= render 'partials/posts', posts: @posts %>
     	</div>

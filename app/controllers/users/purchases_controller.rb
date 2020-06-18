@@ -3,11 +3,11 @@ class Users::PurchasesController < ApplicationController
 	before_action :authenticate_user!
 
 	def buy
-		@purchases = Purchase.where(buying_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC")
+		@purchases = Purchase.where(buying_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC").page(params[:page]).per(10)
 	end
 
 	def sell
-		@purchases = Purchase.where(selling_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC")
+		@purchases = Purchase.where(selling_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC").page(params[:page]).per(10)
 	end
 
 	def data
