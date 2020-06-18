@@ -2,7 +2,7 @@ class Users::PostsController < ApplicationController
 
 	def top
 		@genres = Genre.where.not(status: "無効")
-		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).order(id: "DESC").page(params[:page]).per(6)
+		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).limit(6).order(id: "DESC").page(params[:page]).per(6)
 	end
 
 	def about

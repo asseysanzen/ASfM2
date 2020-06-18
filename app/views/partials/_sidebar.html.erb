@@ -1,11 +1,15 @@
 <div class="col-xs-2">
 	<div class="sidebar">
 		<% genres.each do |genre| %>
-		 	<div class="genre-name"><a href="<%= users_genre_path(genre.id) %>"><%= genre.kind %></a></div>
+		 	<div class="genre-name">
+		 		<%= link_to users_genre_path(genre.id), :style=>"color:white;" do %>
+					<%= genre.kind %>
+				<% end %>
+		 	</div>
 		<% end %>
 		<% if user_signed_in? %>
-		<div class="genre-name"><%= link_to "お気に入り", users_posts_favorite_path, class:"glyphicon glyphicon-thumbs-up" %></div>
-		<div class="genre-name"><%= link_to "フォローアイテム", users_posts_follow_path, class:"glyphicon glyphicon-ok-circle" %></div>
+		<div class="genre-name"><%= link_to "お気に入り", users_posts_favorite_path, class:"glyphicon glyphicon-thumbs-up", :style=>"color:white;" %></div>
+		<div class="genre-name"><%= link_to "フォローアイテム", users_posts_follow_path, class:"glyphicon glyphicon-ok-circle", :style=>"color:white;" %></div>
 		<% end %>
 	</div>
 </div>

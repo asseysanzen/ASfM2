@@ -14,14 +14,14 @@
 		<% @purchases.each do |purchase| %>
 		<tr>
 			<% if user_signed_in? %>
-			<td><a href="<%= users_purchase_path(purchase.id) %>"><%= purchase.created_at%></a></td>
+			<td><a href="<%= users_purchase_path(purchase.id) %>"><%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %></a></td>
 			<td><%= purchase.post.item_name %></td>
 			<td><%= purchase.selling_user.name %></td>
 			<td><%= purchase.selling_status %></td>
 			<td><%= purchase.buying_user.name %></td>
 			<td><%= purchase.buying_status %></td>
 			<% else %>
-			<td><a href="<%= admins_purchase_path(purchase.id) %>"><%= purchase.created_at%></a></td>
+			<td><a href="<%= admins_purchase_path(purchase.id) %>"><%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %></a></td>
 			<td><%= purchase.post.item_name %></td>
 			<td><%= purchase.post.user.name %></td>
 			<td><%= purchase.selling_status %></td>

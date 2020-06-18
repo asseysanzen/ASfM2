@@ -20,7 +20,7 @@
 		<div class="explain">
 			<div class="product_name">
 				<div class="admin_label">
-					<%= f.label :Item %>
+					<%= f.label :アイテム %>
 				</div>
 				<div class="explain_text">
 					<%= f.text_field :item_name %>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="product_description">
 				<div class="admin_label">
-					<%= f.label :Description %>
+					<%= f.label :詳細 %>
 				</div>
 				<div class="explain_text">
 					<%= f.text_area :description %>
@@ -36,7 +36,7 @@
 			</div>
 			<div class="product_genre">
 				<div class="admin_label">
-					<%= f.label :Genre %>
+					<%= f.label :ジャンル %>
 				</div>
 				<div class="explain_text">
 					<%= f.collection_select :genre_id, Genre.where("status = ? OR status = ?", 0,1), :id, :kind %>
@@ -44,7 +44,7 @@
 			</div>
 			<div class="product_price">
 				<div class="admin_label">
-					<%= f.label :Price %>
+					<%= f.label :価格 %>
 				</div>
 				<div class="explain_text">
 					<%= f.text_field :price %>円

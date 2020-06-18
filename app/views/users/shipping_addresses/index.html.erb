@@ -9,7 +9,7 @@
 			<%= f.text_field :postal_code %>
 			<%= f.label :住所 %>
 			<%= f.text_field :address %>
-  			<%= f.submit 'Create' %>
+  			<%= f.submit '追加' %>
   		<% end %>
 	</div>
 
@@ -30,10 +30,10 @@
 						<td><%= shipping_address.postal_code %></td>
 						<td><%= shipping_address.address %>
 						<td>
-							<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"btn btn-primary active" %>
+							<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"btn btn-default active" %>
 						</td>
 						<td>
-							<%= link_to "削除", users_shipping_address_path(shipping_address.id), method: :delete, class:"btn btn-primary active" %>
+							<%= link_to "削除", users_shipping_address_path(shipping_address.id), method: :delete, class:"btn btn-default active" %>
 						</td>
 					</tr>
 					<% end %>

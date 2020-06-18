@@ -13,12 +13,12 @@
 <div class="infomation">
 	<div class="content">
 		<div class="content_text">
-			<%= link_to "#{user.twitter_account}", "https://twitter.com/#{user.twitter_account}", target: :_blank, class:"fab fa-twitter"  %>
+			<%= link_to "#{user.twitter_account}", "https://twitter.com/#{user.twitter_account}", target: :_blank, class:"fab fa-twitter", :style=>"color:gray;"  %>
 		</div>
 	</div>
 	<div class="content">
 		<div class="content_text">
-			<%= link_to "#{user.instagram_account}", "https://www.instagram.com/#{user.instagram_account}/", target: :_blank, class:"fab fa-instagram" %>
+			<%= link_to "#{user.instagram_account}", "https://www.instagram.com/#{user.instagram_account}/", target: :_blank, class:"fab fa-instagram", :style=>"color:gray;" %>
 		</div>
 	</div>
 	<div class="content">
@@ -29,7 +29,7 @@
 			<% if admin_signed_in? %>
 				<%= user.followed.count %>
 			<% else %>
-				<%= link_to users_user_followers_path(user.id) do %>
+				<%= link_to users_user_followers_path(user.id), :style=>"color:gray;" do %>
 					<%= user.followed.count %>
 				<% end %>
 			<% end %>
@@ -43,7 +43,7 @@
 			<% if admin_signed_in? %>
 				<%= user.follower.count %>
 			<% else %>
-				<%= link_to users_user_follows_path(user.id) do %>
+				<%= link_to users_user_follows_path(user.id), :style=>"color:gray;" do %>
 					<%= user.follower.count %>
 				<% end %>
 			<% end %>
