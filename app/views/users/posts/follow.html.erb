@@ -1,21 +1,24 @@
-<div class="headline">
-	<h3 class="headline_text">フォローユーザーのアイテム</h3>
-</div>
-
 <%= render 'partials/sidebar', genres: @genres %>
 
-<% if @users.count > 0 %>
-	<% @users.each do |user| %>
-    	<% @posts = Post.where(user_id: user.id).order("created_at DESC").page(params[:page]).per(12) %>
-    	<div>
-        	<%= render 'partials/posts', posts: @posts %>
-    	</div>
-	<% end %>
-<% else %>
-	<div>
-		<p>
-			まだ誰もフォローしていません。<br>
-			気になる人がいる場合フォローすることをおすすめします。
-		</p>
+
+<div class="col-xs-10">
+	<div class="headline">
+		<h3 class="headline_text">フォローアイテム</h3>
 	</div>
-<% end %>
+
+	<% if @users.count > 0 %>
+		<% @users.each do |user| %>
+	    	<% @posts = Post.where(user_id: user.id).order("created_at DESC").page(params[:page]).per(12) %>
+	    	<div>
+	        	<%= render 'partials/posts', posts: @posts %>
+	    	</div>
+		<% end %>
+	<% else %>
+		<div>
+			<p>
+				まだ誰もフォローしていません。<br>
+				気になる人がいる場合フォローすることをおすすめします。
+			</p>
+		</div>
+	<% end %>
+</div>

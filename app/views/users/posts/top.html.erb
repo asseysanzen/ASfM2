@@ -1,20 +1,24 @@
 <%= render 'partials/sidebar', genres: @genres %>
 
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+<div class="col-xs-10">
+	<div class="top">
+		<div class="top_text assey">
+			<p><span class="top_head">A</span>ssey</p>
+		</div>
+		<div class="top_text sanzen">
+			<p><span class="top_head">S</span>anzen</p>
+		</div>
+		<div class="top_text free">
+			<p><span class="top_head">f</span>ree</p>
+		</div>
+		<div class="top_text market">
+			<p><span class="top_head">M</span>arket</p>
+		</div>
+	</div>
 
-<h4>おすすめ</h4>
+	<h4>おすすめ</h4>
 
-<div>
-    <%= render 'partials/posts', posts: @posts %>
+	<div>
+	    <%= render 'partials/posts', posts: @posts %>
+	</div>
 </div>

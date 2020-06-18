@@ -18,7 +18,7 @@
 		<div class="form">
 			<% if @postages.count == 0 %> <!-- 送料を設定していない場合設定フォームを表示 -->
 				<%= form_for @postage_new, url: admins_postages_path do |f| %>
-					<%= f.label :Postage %>
+					<%= f.label :送料 %>
 					<%= f.text_field :fee %>
 		  			<%= f.submit '設定' %>
 		  		<% end %>
@@ -42,7 +42,7 @@
 					<tr>
 						<td><%= payment_method.method %></td>
 						<td><%= payment_method.status %>
-						<td><%= link_to "編集", edit_admins_payment_method_path(payment_method.id), class:"btn btn-primary" %></td>
+						<td><%= link_to "編集", edit_admins_payment_method_path(payment_method.id), class:"btn btn-default" %></td>
 					</tr>
 					<% end %>
 				</tbody>
@@ -62,7 +62,7 @@
 					<% @postages.each do |postage| %>
 					<tr>
 						<td><%= postage.fee %>円</td>
-						<td><%= link_to "編集", edit_admins_postage_path(postage.id), class:"btn btn-primary" %></td>
+						<td><%= link_to "編集", edit_admins_postage_path(postage.id), class:"btn btn-default" %></td>
 					</tr>
 					<% end %>
 				</tbody>

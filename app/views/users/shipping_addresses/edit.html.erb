@@ -1,13 +1,13 @@
 <div class="midasi">
-	<h3 class="midasitext">Edit Shipping Address</h3>
+	<h3 class="midasitext">配送先編集</h3>
 </div>
 
 <div>
 	<%= form_for @shipping_address, url: users_shipping_address_path(@shipping_address.id) do |f| %>
-		<%= f.label :Postal_Code %>
+		<%= f.label :郵便番号 %>
 		<%= f.text_field :postal_code %>
-		<%= f.label :Address %>
+		<%= f.label :住所 %>
 		<%= f.text_field :address %>
-		<%= f.submit 'Update' %>
+		<%= f.submit '更新' %>
 	<% end %>
 </div>

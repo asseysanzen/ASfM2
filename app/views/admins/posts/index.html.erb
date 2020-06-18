@@ -1,11 +1,13 @@
 <div class="row">
 	<%= render 'partials/admin_sidebar', genres: @genres %>
 
-	<div class="headline">
-		<h3 class="headline_text">アイテム</h3>
-	</div>
+	<div class="col-xs-10">
+		<div class="headline">
+			<h3 class="headline_text">アイテム</h3>
+		</div>
 
-	<div>
-	    <%= render 'partials/posts', posts: @posts %>
+		<div>
+		    <%= render 'partials/posts', posts: @posts %>
+		</div>
 	</div>
 </div>
