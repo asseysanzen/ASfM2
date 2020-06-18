@@ -1,3 +1,31 @@
 // Place all the styles related to the admins::Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admin_user{
+	text-align: center;
+	font-size: 17px;
+}
+
+.admin_user_label{
+	display: inline-block;
+	width: 30px;
+}
+
+.user_id{
+	display: inline-block;
+}
+
+.admin_user_status{
+	display: inline-block;
+}
+
+.admin_user_button{
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: solid 5px gray;
+}
+
+.admin_user_posts{
+	margin-top: 30px;
+}

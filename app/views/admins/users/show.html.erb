@@ -1,14 +1,14 @@
-<div class="headline">
-	<h3 class="headline_text"><%= @user.name %></h3>
+<div class="name">
+	<h3 class="name_text"><%= @user.name %></h3>
 </div>
 
-<div class="customer_content">
-	<div class="admin_c_label">
+<div class="admin_user">
+	<div class="admin_user_label">
 		<p>ID</p>
 	</div>
-	<div class="explain_text">
+	<div class="user_id">
 		<%= @user.id %>
-		<div class="c_status">
+		<div class="admin_user_status">
 			<%= @user.status %>
 		</div>
 	</div>
@@ -18,10 +18,10 @@
 	<%= render 'partials/user', user: @user %>
 </div>
 
-<div class="c_button">
+<div class="admin_user_button">
 	<%= link_to "編集", edit_admins_user_path(@user.id), class:"btn btn-primary" %>
 </div>
 
-<div>
+<div class="admin_user_posts">
     <%= render 'partials/posts', posts: @posts %>
 </div>

@@ -1,17 +1,17 @@
 class Users::UsersController < ApplicationController
 
 	def index
-		@users = User.where(status: true)
+		@users = User.where(status: true).order(id: "DESC").page(params[:page]).per(10)
 	end
 
 	def show
 		@user = User.find(params[:id])
-		@posts = Post.where(user_id: params[:id]).where.not(status: 1)
+		@posts = Post.where(user_id: params[:id]).where.not(status: 1).order(id: "DESC").page(params[:page]).per(12)
 	end
 
 	def mypage
 		@user = current_user
-		@posts = Post.where(user_id: current_user.id)
+		@posts = Post.where(user_id: current_user.id).order(id: "DESC").page(params[:page]).per(12)
 	end
 
 	def fix
