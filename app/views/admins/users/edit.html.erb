@@ -17,7 +17,7 @@
 		</div>
 		<div class="customer_name">
 			<div class="admin_c_label">
-				<%= f.label :Name %>
+				<%= f.label :名前 %>
 			</div>
 			<%= f.text_field :name %>
 		</div>
@@ -35,19 +35,19 @@
 		</div>
 		<div class="customer_tell">
 			<div class="admin_c_label">
-				<%= f.label :Profile %>
+				<%= f.label :プロフィール %>
 			</div>
 			<%= f.text_field :profile %>
 		</div>
 		<div class="customer_email">
 			<div class="admin_c_label">
-				<%= f.label :Email %>
+				<%= f.label :メール %>
 			</div>
 			<%= f.text_field :email %>
 		</div>
 		<div class="customer_status">
 			<div class="admin_c_label">
-				<%= f.label :Status %>
+				<%= f.label :ステータス %>
 			</div>
 			<%= f.select :status, User.statuses.keys.to_a %>
 		</div>

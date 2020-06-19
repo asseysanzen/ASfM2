@@ -35,8 +35,20 @@
 
 	<tbody>
 		<tr>
-			<td><a href="<%= users_user_path(@purchase.selling_user.id) %>"><%= @purchase.selling_user.name %></a></td>
-			<td><a href="<%= users_user_path(@purchase.buying_user.id) %>"><%= @purchase.buying_user.name %></a></td>
+			<td>
+				<% if @purchase.selling_user.status == "有効" %>
+					<a href="<%= users_user_path(@purchase.selling_user.id) %>"><%= @purchase.selling_user.name %></a>
+				<% else %>
+					<p>退会済</p>
+				<% end %>
+			</td>
+			<td>
+				<% if @purchase.buying_user.status == "有効" %>
+					<a href="<%= users_user_path(@purchase.buying_user.id) %>"><%= @purchase.buying_user.name %></a>
+				<% else %>
+					<p>退会済</p>
+				<% end %>
+			</td>
 			<td><%= @purchase.selling_status %></td>
 			<td><%= @purchase.buying_status %></td>
 			<td><%= @purchase.final_postage %>円</td>

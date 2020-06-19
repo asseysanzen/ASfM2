@@ -25,11 +25,20 @@
             </div>
           <% end %>
         </nav>
+        <nav class="nav navbar-nav search_form">
+          <% unless admin_signed_in? %>
+            <%= form_tag(users_searches_path,:method => 'get') do %>
+              <%= text_field_tag :search %>
+                <%= select_tag(:option, options_for_select([["ユーザー", "1"],["アイテム","2"]]))%>
+                <%= submit_tag '検索', :name => nil %>
+            <% end %>
+          <% end %>
+        </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= link_to 'About', users_posts_about_path, :style=>"color:white;" %></li>
-              <li><%= link_to 'マイページ', users_users_mypage_path, :style=>"color:white;" %></li>
+              <li><%= link_to 'マイページ', users_users_mypage_path, class:"fas fa-user-cog", :style=>"color:white;" %></li>
               <li><%= link_to 'アイテム', users_posts_path, class:"glyphicon glyphicon-picture", :style=>"color:white;" %></li>
               <li><%= link_to 'ユーザー', users_users_path, class:"glyphicon glyphicon-user", :style=>"color:white;" %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt", :style=>"color:white;" %></li>
@@ -60,6 +69,7 @@
             <li><a href="<%= users_purchases_data_path %>">売上分析</a></li>
             <li><a href="<%= users_users_fix_path %>">プロフィール編集</a></li>
             <li><a href="<%= users_shipping_addresses_path %>">配送先</a></li>
+            <li><a href="<%= users_users_withdrawal_path %>">退会手続き</a></li>
           </ul>
         </div>
         <div id="hm-icon">

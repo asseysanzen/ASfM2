@@ -1,0 +1,14 @@
+<h3>退会確認</h3>
+
+<div>
+	<p>
+		退会すると今までのデータが全て見れなくなってしまいます。<br>
+		ご了承の上、退会ボタンをクリックしてください。
+	</p>
+</div>
+
+<%= form_for @user, url: users_users_fix_path do |f| %>
+	<%= f.hidden_field :status, :value => "退会済" %>
+	<%= f.submit "退会する" %>
+<% end %>
+

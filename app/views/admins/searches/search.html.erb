@@ -1,0 +1,37 @@
+<% if @user_or_post == "3" %>
+	<div class="headline">
+		<h3 class="headline_text">検索結果</h3>
+	</div>
+	<div class="admin_search_form">
+		<%= form_tag(admins_searches_path,:method => 'get') do %>
+		    <%= text_field_tag :search %>
+		    <%= select_tag(:option, options_for_select([["全て", "1"],["有効","2"],["退会済","3"]]))%>
+		    <%= hidden_field_tag :case, 3 %>
+		    <%= submit_tag '検索', :name => nil %>
+		<% end %>
+	</div>
+	<div>
+		<%= render 'partials/users', users: @users %>
+	</div>
+<% elsif @user_or_post == "4" %>
+	<div class="row">
+		<%= render 'partials/admin_sidebar', genres: @genres %>
+
+		<div class="col-xs-10">
+			<div class="headline">
+				<h3 class="headline_text">検索結果</h3>
+			</div>
+			<div class="admin_search_form">
+				<%= form_tag(admins_searches_path,:method => 'get') do %>
+			    	<%= text_field_tag :search %>
+			    	<%= select_tag(:option, options_for_select([["全て", "4"],["販売中","5"],["販売停止","6"],["売切","7"],["退会済","8"]]))%>
+			    	<%= hidden_field_tag :case, 4 %>
+			    	<%= submit_tag '検索', :name => nil %>
+				<% end %>
+			</div>
+			<div class="admin_posts">
+			    <%= render 'partials/posts', posts: @posts %>
+			</div>
+		</div>
+	</div>
+<% end %>

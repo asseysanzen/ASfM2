@@ -27,10 +27,10 @@
 		</div>
 		<div class="content_text">
 			<% if admin_signed_in? %>
-				<%= user.followed.count %>
+				<%= user.followed.joins(:followed).where.not(users: {status: "退会済"}).count %>
 			<% else %>
 				<%= link_to users_user_followers_path(user.id), :style=>"color:gray;" do %>
-					<%= user.followed.count %>
+					<%= user.followed.joins(:followed).where.not(users: {status: "退会済"}).count %>
 				<% end %>
 			<% end %>
 		</div>
@@ -41,10 +41,10 @@
 		</div>
 		<div class="content_text">
 			<% if admin_signed_in? %>
-				<%= user.follower.count %>
+				<%= user.follower.joins(:follower).where.not(users: {status: "退会済"}).count %>
 			<% else %>
 				<%= link_to users_user_follows_path(user.id), :style=>"color:gray;" do %>
-					<%= user.follower.count %>
+					<%= user.follower.joins(:follower).where.not(users: {status: "退会済"}).count %>
 				<% end %>
 			<% end %>
 		</div>

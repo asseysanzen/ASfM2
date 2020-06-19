@@ -17,7 +17,11 @@ class Admins::UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		@posts = Post.where(user: @user).where.not(status: "売切")
 		if @user.update(user_params)
+			if @user.status == "退会済"
+				@posts.update_all(status: "退会済")
+			end
 			redirect_to admins_user_path(@user.id)
 		else
 			render :edit

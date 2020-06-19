@@ -16,11 +16,14 @@ Rails.application.routes.draw do
 
   namespace :users do
 
+    get 'searches' => 'searches#search'
+
     get 'users/mypage' => 'users#mypage' #ログインユーザーのマイページ
     get 'users/follow' => 'users#follow' #ログインユーザーのフォロー一覧ページ
     get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
     patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
     put 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
+    get 'users/withdrawal' => 'users#withdrawal' #ユーザー退会画面
     resources :users, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]
       get 'follows' => 'relationships#follower', as: 'follows'
@@ -57,13 +60,12 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'top' => 'purchases#top'
 
+    get 'searches' => 'searches#search'
+
     resources :users, only: [:index, :show, :edit, :update]
 
     resources :purchases, only: [:index, :show, :update]
 
-    get 'posts/sale' => 'posts#sale' #販売中商品一覧
-    get 'posts/stop' => 'posts#stop' #販売停止中商品一覧
-    get 'posts/sold_out' => 'posts#sold_out' #売切商品一覧
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
 
     resources :genres, only: [:index, :show, :edit, :update, :create]
