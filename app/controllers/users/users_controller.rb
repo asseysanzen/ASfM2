@@ -1,5 +1,8 @@
 class Users::UsersController < ApplicationController
 
+	before_action :active_user, only: [:show]
+	before_action :authenticate_user!, except: [:index, :show]
+
 	def index
 		@users = User.where(status: true).order(id: "DESC").page(params[:page]).per(10)
 	end
@@ -18,10 +21,22 @@ class Users::UsersController < ApplicationController
 		@user = current_user
 	end
 
+	def withdrawal
+		@user = current_user
+	end
+
 	def fix_update
 		@user = current_user
+		@posts = Post.where(user: @user).where.not(status: "売切")
 		if @user.update(user_params)
-			redirect_to users_users_mypage_path
+			if @user.status == "退会済"
+				@posts.update_all(status: "退会済")
+				reset_session
+				flash[:notice] = "退会手続きが完了しました。"
+				redirect_to root_path
+			else
+				redirect_to users_users_mypage_path
+			end
 		else
 			render :fix
 		end
@@ -31,6 +46,13 @@ class Users::UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:name, :user_image, :twitter_account, :instagram_account, :email, :status, :profile)
+	end
+
+	def active_user
+		@user = User.find(params[:id])
+		if @user.status == "退会済"
+			redirect_to users_users_path
+		end
 	end
 
 end

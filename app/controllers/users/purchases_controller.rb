@@ -11,7 +11,10 @@ class Users::PurchasesController < ApplicationController
 	end
 
 	def data
-		@genres = Genre.all
+		current_purchases = Purchase.where(:created_at => 4.weeks.ago..Time.now).where.not(buying_status: "カート").where(selling_user: current_user)
+		genre_sales_counts = current_purchases.group(:genre_id).count
+		genre_sales_ids = Hash[genre_sales_counts.sort_by{ |_, v| -v }].keys
+		@genres = Genre.where(id: genre_sales_ids)
 		@purchases = Purchase.where.not(buying_status: "カート").where(selling_user: current_user)
 	end
 

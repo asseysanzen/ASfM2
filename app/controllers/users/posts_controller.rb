@@ -1,5 +1,8 @@
 class Users::PostsController < ApplicationController
 
+	before_action :active_post, only: [:show]
+	before_action :authenticate_user!, except: [:top, :about, :index, :show]
+
 	def top
 		@genres = Genre.where.not(status: "無効")
 		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).limit(6).order(id: "DESC").page(params[:page]).per(6)
@@ -59,7 +62,7 @@ class Users::PostsController < ApplicationController
 
 	def follow
 		@user = current_user
-		@users = @user.following_user
+		@users = @user.following_user.where(status: "有効")
 		@genres = Genre.where.not(status: "無効")
 	end
 
@@ -67,6 +70,13 @@ class Users::PostsController < ApplicationController
 
 	def post_params
 		params.require(:post).permit(:user_id, :genre_id, :item_name, :description, :price, :image, :status)
+	end
+
+	def active_post
+		@post = Post.find(params[:id])
+		if @post.user.status == "退会済"
+			redirect_to users_posts_path
+		end
 	end
 
 end
