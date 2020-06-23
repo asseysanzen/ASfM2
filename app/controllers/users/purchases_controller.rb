@@ -3,7 +3,7 @@ class Users::PurchasesController < ApplicationController
 	before_action :authenticate_user!
 
 	def buy
-		@purchases = Purchase.where(buying_user_id: current_user.id).active_purchase.ordering.table_paginate(params)
+		@purchases = Purchase.where(buying_user_id: current_user.id).active_purchase.ordering.table_paginate(params) #model
 	end
 
 	def sell
