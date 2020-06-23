@@ -14,11 +14,14 @@
 		<% @purchases.each do |purchase| %>
 		<tr>
 			<% if user_signed_in? %>
-				<td><a href="<%= users_purchase_path(purchase.id) %>"><%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %></a></td>
+				<td><%= link_to users_purchase_path(purchase.id), :style=>"color:gray;" do %>
+						<%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+					<% end %>
+				</td>
 				<td><%= purchase.post.item_name %></td>
 				<td>
 					<% if purchase.selling_user.status == "有効" %>
-						<a href="<%= users_user_path(purchase.selling_user.id) %>"><%= purchase.selling_user.name %></a>
+						<%= purchase.selling_user.name %>
 					<% else %>
 						<p>退会済</p>
 					<% end %>
@@ -26,14 +29,18 @@
 				<td><%= purchase.selling_status %></td>
 				<td>
 					<% if purchase.buying_user.status == "有効" %>
-						<a href="<%= users_user_path(purchase.buying_user.id) %>"><%= purchase.buying_user.name %></a>
+						<%= purchase.buying_user.name %>
 					<% else %>
 						<p>退会済</p>
 					<% end %>
 				</td>
 				<td><%= purchase.buying_status %></td>
 			<% else %>
-				<td><a href="<%= admins_purchase_path(purchase.id) %>"><%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %></a></td>
+				<td>
+					<%= link_to admins_purchase_path(purchase.id), :style=>"color:gray;" do %>
+						<%= purchase.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+					<% end %>
+				</td>
 				<td><%= purchase.post.item_name %></td>
 				<td><%= purchase.post.user.name %></td>
 				<td><%= purchase.selling_status %></td>

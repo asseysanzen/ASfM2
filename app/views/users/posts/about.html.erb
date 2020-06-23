@@ -35,6 +35,65 @@
 				それがいい服との出会い。
 			</div>
 		</div>
+
+		<div class="about">
+			<div class="about_headline">地図</div>
+			<div id="map" style="width:75%; height:300px">
+			</div>
+		</div>
+		<script>
+			// 現在地取得処理
+		    function initMap() {
+		      // Geolocation APIに対応している
+		      if (navigator.geolocation) {
+		        // 現在地を取得
+		        navigator.geolocation.getCurrentPosition(
+		          // 取得成功した場合
+		          function(position) {
+		            // 緯度・経度を変数に格納
+		            var mapLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		            // マップオプションを変数に格納
+		            var mapOptions = {
+		              zoom : 19,          // 拡大倍率
+		              center : new google.maps.LatLng(35.6627887,139.699463)  // 緯度・経度
+		            };
+		            // マップオブジェクト作成
+		            var map = new google.maps.Map(
+		              document.getElementById("map"), // マップを表示する要素
+		              mapOptions         // マップオプション
+		            );
+		            //　マップにマーカーを表示する
+		            var marker = new google.maps.Marker({
+		              map : map,             // 対象の地図オブジェクト
+		              position : new google.maps.LatLng(35.6627887,139.699463)   // 緯度・経度
+		            });
+		          },
+		          // 取得失敗した場合
+		          function(error) {
+		            // エラーメッセージを表示
+		            switch(error.code) {
+		              case 1: // PERMISSION_DENIED
+		                alert("位置情報の利用が許可されていません");
+		                break;
+		              case 2: // POSITION_UNAVAILABLE
+		                alert("現在位置が取得できませんでした");
+		                break;
+		              case 3: // TIMEOUT
+		                alert("タイムアウトになりました");
+		                break;
+		              default:
+		                alert("その他のエラー(エラーコード:"+error.code+")");
+		                break;
+		            }
+		          }
+		        );
+		      // Geolocation APIに対応していない
+		      } else {
+		        alert("この端末では位置情報が取得できません");
+		      }
+		    }
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfwDwkCixwSjhKsbq0hXZIiYBN33-jsl4&callback=initMap" async defer></script>
 	</div>
 <div class="col-xs-4">
 <div class="instagram">
