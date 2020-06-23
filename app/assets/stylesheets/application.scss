@@ -40,6 +40,14 @@ header{
   margin-top: 40px;
 }
 
+.td_text{
+  margin-top: 27px;
+}
+
+.td_follow{
+  margin-top: 20px;
+}
+
 .header_icon{
 	font-size: 35px;
 }
@@ -114,6 +122,10 @@ header{
   z-index: 9;
 }
 
+#sp-menu ul{
+  margin-top: 50px;
+}
+
 #sp-menu li{
   text-align: center;
   margin-bottom: 30px;
@@ -183,7 +195,7 @@ header{
   display: inline-block;
 }
 
-.headline{
+.admin_headline{
   display: inline-block;
 }
 
@@ -223,4 +235,8 @@ header{
 
 .actions{
   color: black;
+}
+
+.headline{
+  color: #EEEEEE;
 }

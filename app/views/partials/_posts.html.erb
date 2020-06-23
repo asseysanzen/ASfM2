@@ -1,47 +1,45 @@
-<div class="col-xs-10">
-    <div class="clearfix">
-        <% posts.each do |post| %>
-            <div class="posts">
-                <div class="posts_image">
-                    <% if admin_signed_in? %>
-                        <%= link_to admins_post_path(post.id) do %>
-                            <%= attachment_image_tag post, :image, size:"250x250" %>
-                         <% end %>
-                    <% else %>
-                        <%= link_to users_post_path(post.id) do %>
-                            <%= attachment_image_tag post, :image, size:"250x250" %>
-                         <% end %>
+<div class="clearfix">
+    <% posts.each do |post| %>
+        <div class="posts">
+            <div class="posts_image">
+                <% if admin_signed_in? %>
+                    <%= link_to admins_post_path(post.id) do %>
+                        <%= attachment_image_tag post, :image, size:"250x250" %>
                     <% end %>
+                <% else %>
+                    <%= link_to users_post_path(post.id) do %>
+                        <%= attachment_image_tag post, :image, size:"250x250" %>
+                    <% end %>
+                <% end %>
+            </div>
+
+            <div class="posts_information">
+                <div class="favorites post_<%= post.id %>">
+                    <%= render 'partials/favorite', post: post %>
                 </div>
 
-                <div class="posts_information">
-                    <div class="favorites post_<%= post.id %>">
-                        <%= render 'partials/favorite', post: post %>
+                <% if admin_signed_in? %>
+                    <div class="admin_post_price">
+                        <%= post.price.to_s(:delimited) %>円
                     </div>
-
-                    <% if admin_signed_in? %>
-                        <div class="admin_post_price">
+                    <div class="admin_post_status">
+                        <%= post.status %>
+                    </div>
+                <% else %>
+                    <% if post.status == "販売中" %>
+                        <div class="post_price">
                             <%= post.price.to_s(:delimited) %>円
                         </div>
-                        <div class="admin_post_status">
+                    <% else %>
+                        <div class="post_status">
                             <%= post.status %>
                         </div>
-                    <% else %>
-                        <% if post.status == "販売中" %>
-                            <div class="post_price">
-                                <%= post.price.to_s(:delimited) %>円
-                            </div>
-                        <% else %>
-                            <div class="post_status">
-                                <%= post.status %>
-                            </div>
-                        <% end %>
                     <% end %>
-                </div>
+                <% end %>
             </div>
-        <% end %>
-    </div>
-    <div class="paginate">
-        <%= paginate @posts %>
-    </div>
+        </div>
+    <% end %>
+</div>
+<div class="paginate">
+    <%= paginate @posts %>
 </div>

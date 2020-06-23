@@ -15,8 +15,16 @@
 
 	<tbody>
 		<tr>
-			<td><a href="<%= admins_user_path(@purchase.selling_user.id) %>"><%= @purchase.selling_user.name %></a></td>
-			<td><a href="<%= admins_user_path(@purchase.buying_user.id) %>"><%= @purchase.buying_user.name %></a></td>
+			<td>
+                <%= link_to admins_user_path(@purchase.selling_user.id), :style=>"color:gray;" do %>
+                    <%= @purchase.selling_user.name %>
+                <% end %>
+            </td>
+			<td>
+                <%= link_to admins_user_path(@purchase.buying_user.id), :style=>"color:gray;" do %>
+                    <%= @purchase.buying_user.name %>
+                <% end %>
+            </td>
 			<td><%= @purchase.final_postage.to_s(:delimited) %>円</td>
 			<td><%= @purchase.final_price.to_s(:delimited) %>円</td>
 			<td><%= (@purchase.final_postage + @purchase.final_price).to_s(:delimited) %>円</td>
