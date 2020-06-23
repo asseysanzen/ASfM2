@@ -51,9 +51,9 @@
 			</td>
 			<td><%= @purchase.selling_status %></td>
 			<td><%= @purchase.buying_status %></td>
-			<td><%= @purchase.final_postage %>円</td>
-			<td><%= @purchase.final_price %>円</td>
-			<td><%= @purchase.final_postage + @purchase.final_price %>円</td>
+			<td><%= @purchase.final_postage.to_s(:delimited) %>円</td>
+			<td><%= @purchase.final_price.to_s(:delimited) %>円</td>
+			<td><%= (@purchase.final_postage + @purchase.final_price).to_s(:delimited) %>円</td>
 		</tr>
 	</tbody>
 </table>

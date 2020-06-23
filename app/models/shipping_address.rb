@@ -7,7 +7,7 @@ class ShippingAddress < ApplicationRecord
 	validates :postal_code, :address, presence: true
 
 	def full_address
-    	postal_code + " " + address
+    	postal_code.insert(3, '-') + " " + address
   	end
 
 end

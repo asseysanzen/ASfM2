@@ -9,7 +9,7 @@
 
     <% if post.status == "販売中" %>
         <div class="price_information">
-            <%= post.price %>円
+            <%= post.price.to_s(:delimited) %>円
         </div>
     <% else %>
         <div class="price_information">

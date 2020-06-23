@@ -4,56 +4,42 @@
 
 <% if current_user.twitter_account.blank? and current_user.instagram_account.blank? %>
 	<div>
-		<p>Please register Twitter account or Instagram account.</p>
+		<p>SNSアカウントを登録してください。</p>
 	</div>
-
 <% else %>
-
-	<div class="product_form">
+	<div class="post_form">
 	<%= form_for @post_new, url:  users_posts_path do |f| %>
-		<div class="admin_picture">
-			<div class="picture">
-				<%= f.attachment_field :image %>
-			</div>
-		</div>
-
-		<div class="explain">
-			<div class="product_name">
-				<div class="admin_label">
-					<%= f.label :アイテム %>
-				</div>
-				<div class="explain_text">
+		<div class="new_post">
+			<%= f.attachment_field :image %>
+			<div class="post_field">
+				<%= f.label :アイテム %>
+				<div class="post_field_text">
 					<%= f.text_field :item_name %>
 				</div>
 			</div>
-			<div class="product_description">
-				<div class="admin_label">
-					<%= f.label :詳細 %>
-				</div>
-				<div class="explain_text">
+			<div class="post_field">
+				<%= f.label :詳細 %>
+				<div class="post_field_text">
 					<%= f.text_area :description %>
 				</div>
 			</div>
-			<div class="product_genre">
-				<div class="admin_label">
-					<%= f.label :ジャンル %>
+			<div class="post_field">
+				<%= f.label :ジャンル %>
+				<div class="post_field_text">
+					<%= f.collection_select :genre_id, Genre.active_genre, :id, :kind %>
 				</div>
-				<div class="explain_text">
-					<%= f.collection_select :genre_id, Genre.where("status = ? OR status = ?", 0,1), :id, :kind %>
 				</div>
-			</div>
-			<div class="product_price">
-				<div class="admin_label">
+				<div class="post_field">
 					<%= f.label :価格 %>
+					<div class="post_field_text">
+						<%= f.text_field :price %><span class="jpy">円</span>
+					</div>
 				</div>
-				<div class="explain_text">
-					<%= f.text_field :price %>円
-				</div>
-			</div>
-			<%= f.hidden_field :user_id, :value => current_user.id %>
-			<div class="admin_button">
-  				<%= f.submit '新規登録' %>
-  			</div>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<div class="new_post_button">
+	  				<%= f.submit '新規登録' %>
+	  			</div>
+	  		</div>
   		</div>
 	<% end %>
 	</div>

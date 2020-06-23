@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
 
+	include Paginate
+
 	belongs_to :user
 	belongs_to :genre
 
@@ -15,6 +17,9 @@ class Post < ApplicationRecord
 	validates :description, presence: true
 	validates :price, presence: true
 	validates :image, presence: true
+
+	scope :ordering, -> { order(id: "DESC") }
+	scope :active_posts, -> { where.not(status: "販売停止").where.not(status: "退会済") }
 
 	def favorited_by?(user) #投稿にログイン中ユーザーがいいねしているかどうか
         favorites.where(user_id: user.id).exists?

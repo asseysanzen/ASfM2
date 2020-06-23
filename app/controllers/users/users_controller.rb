@@ -4,17 +4,17 @@ class Users::UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
-		@users = User.where(status: true).order(id: "DESC").page(params[:page]).per(10)
+		@users = User.active_users.ordering.table_paginate(params)
 	end
 
 	def show
 		@user = User.find(params[:id])
-		@posts = Post.where(user_id: params[:id]).where.not(status: 1).order(id: "DESC").page(params[:page]).per(12)
+		@posts = Post.where(user_id: params[:id]).where.not(status: "販売停止").ordering.post_paginate(params)
 	end
 
 	def mypage
 		@user = current_user
-		@posts = Post.where(user_id: current_user.id).order(id: "DESC").page(params[:page]).per(12)
+		@posts = Post.where(user_id: current_user.id).ordering.post_paginate(params)
 	end
 
 	def fix

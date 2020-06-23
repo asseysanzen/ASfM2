@@ -12,7 +12,7 @@
     </div>
 
     <div class="price_information">
-        <%= purchase.post.price %>円
+        <%= purchase.post.price.to_s(:delimited) %>円
     </div>
 </div>
 
@@ -48,11 +48,20 @@
         <div class="information_label">
            <p>配送先</p>
         </div>
-        <div class="information_text">
-            <%= purchase.shipping_address.postal_code %>
-        </div>
-        <div class="information_text">
-            <%= purchase.shipping_address.address %>
-        </div>
+        <% if action_name == 'confirm' %>
+            <div class="information_text">
+                <%= purchase.shipping_address.postal_code.insert(3, '-') %>
+            </div>
+            <div class="information_text">
+                <%= purchase.shipping_address.address %>
+            </div>
+        <% else %>
+            <div class="information_text">
+                <%= purchase.postal_code %>
+            </div>
+            <div class="information_text">
+                <%= purchase.address %>
+            </div>
+        <% end %>
     </div>
 </div>

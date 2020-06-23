@@ -1,5 +1,7 @@
 class Purchase < ApplicationRecord
 
+	include Paginate
+
 	belongs_to :post
 	belongs_to :shipping_address
 	belongs_to :genre
@@ -8,5 +10,10 @@ class Purchase < ApplicationRecord
 
 	enum buying_status:{カート:0, 取引成立:1, 到着待ち:2, 商品到着:3}
 	enum selling_status:{入金待ち:0, 入金確認:1, 配送済:2, 取引完了:4}
+
+	scope :ordering, -> { order(id: "DESC") }
+	scope :active_purchase, -> { where.not(buying_status: "カート") }
+	scope :current_data, -> { where(:created_at => 4.weeks.ago..Time.now) }
+	scope :past_data, -> { where(:created_at => 8.weeks.ago..4.weeks.ago) }
 
 end

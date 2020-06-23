@@ -16,12 +16,12 @@ class Users::RelationshipsController < ApplicationController
 
   	def follower
     	user = User.find(params[:user_id])
-    	@users = user.following_user.where(status: "有効").order(id: "DESC").page(params[:page]).per(10)
+    	@users = user.following_user.active_users.ordering.table_paginate(params)
   	end
 
   	def followed
     	user = User.find(params[:user_id])
-    	@users = user.follower_user.where(status: "有効").order(id: "DESC").page(params[:page]).per(10)
+    	@users = user.follower_user.active_users.ordering.table_paginate(params)
   	end
 
 end

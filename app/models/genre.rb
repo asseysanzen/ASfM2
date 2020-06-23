@@ -8,4 +8,6 @@ class Genre < ApplicationRecord
 	validates :kind, presence: true
 	validates :status, presence: true
 
+	scope :active_genre, -> { where.not(status: "無効") }
+
 end
