@@ -4,23 +4,23 @@ class Users::PostsController < ApplicationController
 	before_action :authenticate_user!, except: [:top, :about, :index, :show]
 
 	def top
-		@genres = Genre.where.not(status: "無効")
-		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).limit(6).order(id: "DESC").page(params[:page]).per(6)
+		@genres = Genre.active_genre
+		@posts = Post.joins(:user, :genre).where(posts: {status: "販売中"}).where(users: {status: "有効"}).where(genres: {status: "おすすめ"}).limit(6).ordering.page(params[:page]).per(6)
 	end
 
 	def about
 	end
 
 	def index
-		@posts = Post.joins(:user).where.not(posts: {status: "販売停止"}).where(users: {status: "有効"}).order(id: "DESC").page(params[:page]).per(12) #投稿を新しい順に並べる
-		@genres = Genre.where.not(status: "無効")
+		@posts = Post.active_posts.ordering.post_paginate(params)
+		@genres = Genre.active_genre
 	end
 
 	def show
 		@post = Post.find(params[:id])
 		@purchase = Purchase.new
 		@comment = Comment.new
-		@genres = Genre.where.not(status: "無効")
+		@genres = Genre.active_genre
 	end
 
 	def new
@@ -56,14 +56,14 @@ class Users::PostsController < ApplicationController
 	end
 
 	def favorite
-		@posts = current_user.favorite_posts.order(id: "DESC").page(params[:page]).per(12)
-		@genres = Genre.where.not(status: "無効")
+		@posts = current_user.favorite_posts.active_posts.ordering.post_paginate(params)
+		@genres = Genre.active_genre
 	end
 
 	def follow
 		@user = current_user
-		@users = @user.following_user.where(status: "有効")
-		@genres = Genre.where.not(status: "無効")
+		@users = @user.following_user.active_users
+		@genres = Genre.active_genre
 	end
 
 	private

@@ -34,11 +34,11 @@
 
 			<tbody>
 				<tr>
-					<td><%= @today.sum(:final_price) %>円</td>
+					<td><%= @today.sum(:final_price).to_s(:delimited) %>円</td>
 				</tr>
 				<% @histories.each do |history| %>
 				<tr>
-					<td><%= history.sum(:final_price) %>円</td>
+					<td><%= history.sum(:final_price).to_s(:delimited) %>円</td>
 				</tr>
 				<% end %>
 			</tbody>

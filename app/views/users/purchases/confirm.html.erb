@@ -9,10 +9,10 @@
 <table class="comfirm_price">
     <tr>
         <th>送料</th>
-        <td><%= @postage.fee %>円</td>
+        <td><%= @postage.fee.to_s(:delimited) %>円</td>
     <tr>
         <th>合計金額</th>
-        <td><%= @purchase.post.price + @postage.fee %>円</td>
+        <td><%= (@purchase.post.price + @postage.fee).to_s(:delimited) %>円</td>
     </tr>
     <tr>
         <th>支払い方法</th>

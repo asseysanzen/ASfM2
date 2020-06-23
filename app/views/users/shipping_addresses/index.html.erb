@@ -27,7 +27,7 @@
 				<tbody>
 					<% @shipping_addresses.each do |shipping_address| %>
 					<tr>
-						<td><%= shipping_address.postal_code %></td>
+						<td><%= shipping_address.postal_code.insert(3, '-') %></td>
 						<td><%= shipping_address.address %>
 						<td>
 							<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"btn btn-default active" %>

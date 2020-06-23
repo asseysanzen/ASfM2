@@ -3,22 +3,7 @@ class Admins::PostsController < ApplicationController
 	before_action :authenticate_admin!
 
 	def index
-		@posts = Post.all.order(id: "DESC").page(params[:page]).per(12)
-		@genres = Genre.all
-	end
-
-	def sale
-		@posts = Post.where(status: "販売中").order(id: "DESC").page(params[:page]).per(12)
-		@genres = Genre.all
-	end
-
-	def stop
-		@posts = Post.where(status: "販売停止").order(id: "DESC").page(params[:page]).per(12)
-		@genres = Genre.all
-	end
-
-	def sold_out
-		@posts = Post.where(status: "売切").order(id: "DESC").page(params[:page]).per(12)
+		@posts = Post.all.ordering.post_paginate(params)
 		@genres = Genre.all
 	end
 

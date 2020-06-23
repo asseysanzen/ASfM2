@@ -29,6 +29,7 @@ header{
 	font-size: medium;
   position: fixed;
   background-color: black;
+  width: 180px;
 }
 
 .genre-name{
@@ -126,11 +127,11 @@ header{
 
 .pagination>li>a {
   border: none;
-  color: #696969;
+  color: black;
 }
 
 .pagination>.active>a {
-  background: #696969;
+  background: black;
   border-radius: 15px;
 }
 
@@ -184,4 +185,42 @@ header{
 
 .headline{
   display: inline-block;
+}
+
+.login{
+  width: 400px;
+  height: 400px;
+  background-color: black;
+  color: white;
+  margin: 75px auto 0 auto;
+}
+
+.login_content{
+  margin-left: 120px;
+  margin-top: 60px;
+}
+
+.sign_up{
+  width: 400px;
+  height: 525px;
+  background-color: black;
+  color: white;
+  margin: 50px auto 0 auto;
+}
+
+.sign_up_content{
+  margin-left: 120px;
+  margin-top: 30px;
+}
+
+.warning{
+  text-align: center;
+}
+
+.field_text{
+  color: black;
+}
+
+.actions{
+  color: black;
 }

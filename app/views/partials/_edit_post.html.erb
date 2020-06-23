@@ -33,7 +33,7 @@
 						<%= f.label :ジャンル %>
 					</div>
 					<div class="explain_text">
-						<%= f.collection_select :genre_id, Genre.where("status = ? OR status = ?", 0,1), :id, :kind %>
+						<%= f.collection_select :genre_id, Genre.active_genre, :id, :kind %>
 					</div>
 				</div>
 				<div class="product_price">
@@ -88,7 +88,7 @@
 						<%= f.label :ジャンル %>
 					</div>
 					<div class="explain_text">
-						<%= f.collection_select :genre_id, Genre.where("status = ? OR status = ?", 0,1), :id, :kind %>
+						<%= f.collection_select :genre_id, Genre.active_genre, :id, :kind %>
 					</div>
 				</div>
 				<div class="product_price">

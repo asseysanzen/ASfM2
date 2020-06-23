@@ -3,19 +3,19 @@ class Users::PurchasesController < ApplicationController
 	before_action :authenticate_user!
 
 	def buy
-		@purchases = Purchase.where(buying_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC").page(params[:page]).per(10)
+		@purchases = Purchase.where(buying_user_id: current_user.id).active_purchase.ordering.table_paginate(params)
 	end
 
 	def sell
-		@purchases = Purchase.where(selling_user_id: current_user.id).where.not(buying_status: "カート").order(id: "DESC").page(params[:page]).per(10)
+		@purchases = Purchase.where(selling_user_id: current_user.id).active_purchase.ordering.table_paginate(params)
 	end
 
 	def data
-		current_purchases = Purchase.where(:created_at => 4.weeks.ago..Time.now).where.not(buying_status: "カート").where(selling_user: current_user)
+		current_purchases = Purchase.current_data.active_purchase.where(selling_user: current_user)
 		genre_sales_counts = current_purchases.group(:genre_id).count
 		genre_sales_ids = Hash[genre_sales_counts.sort_by{ |_, v| -v }].keys
 		@genres = Genre.where(id: genre_sales_ids)
-		@purchases = Purchase.where.not(buying_status: "カート").where(selling_user: current_user)
+		@purchases = Purchase.active_purchase.where(selling_user: current_user)
 	end
 
 	def show
@@ -34,7 +34,7 @@ class Users::PurchasesController < ApplicationController
 	def create_address
 		@shipping_address = ShippingAddress.new(shipping_address_params)
 		@shipping_address.user_id = current_user.id
-		@purchase = Purchase.where(buying_user: current_user).order(created_at: :desc).limit(1)
+		@purchase = Purchase.where(buying_user: current_user).ordering.limit(1)
  		if @shipping_address.save
  			redirect_to input_users_purchase_path(@purchase.ids)
  		else
@@ -77,7 +77,7 @@ class Users::PurchasesController < ApplicationController
 
 	def destroy
 		@purchase = Purchase.find(params[:id]) #idの箇所はURLと同じ記述
-    	@cart_product.destroy
+    	@purchase.destroy
     	redirect_to root_path
 	end
 

@@ -17,9 +17,9 @@
 		<tr>
 			<td><a href="<%= admins_user_path(@purchase.selling_user.id) %>"><%= @purchase.selling_user.name %></a></td>
 			<td><a href="<%= admins_user_path(@purchase.buying_user.id) %>"><%= @purchase.buying_user.name %></a></td>
-			<td><%= @purchase.final_postage %>円</td>
-			<td><%= @purchase.final_price %>円</td>
-			<td><%= @purchase.final_postage + @purchase.final_price %>円</td>
+			<td><%= @purchase.final_postage.to_s(:delimited) %>円</td>
+			<td><%= @purchase.final_price.to_s(:delimited) %>円</td>
+			<td><%= (@purchase.final_postage + @purchase.final_price).to_s(:delimited) %>円</td>
 		</tr>
 	</tbody>
 </table>
