@@ -20,35 +20,8 @@
 
 	<tbody>
 		<% users.each do |user| %>
-			<tr>
-				<% if admin_signed_in? %>
-					<td><%= user.id %></td>
-					<td>
-						<div class="icons">
-						<%= link_to admins_user_path(user.id) do %>
-							<%= attachment_image_tag(user, :user_image, size: "80x80", fallback: "no_image.jpg") %>
-						<% end %>
-						</div>
-					</td>
-					<td><div class="td_text"><%= user.name %></div></td>
-					<td><div class="td_text"><%= user.twitter_account %></div></td>
-					<td><div class="td_text"><%= user.instagram_account %></div></td>
-					<td><div class="td_text"><%= user.status %></div></td>
-				<% else %>
-					<td>
-						<%= link_to users_user_path(user.id) do %>
-							<%= attachment_image_tag(user, :user_image, size: "80x80", fallback: "no_image.jpg") %>
-						<% end %>
-					</td>
-					<td><div class="td_text"><%= user.name %></div></td>
-					<td><div class="td_text"><%= user.twitter_account %></div></td>
-					<td><div class="td_text"><%= user.instagram_account %></div></td>
-					<td class="user_<%= user.id %>">
-						<div class="td_follow">
-							<%= render 'partials/follow', user: user %>
-						</div>
-					</td>
-				<% end %>
+			<tr class="user_<%= user.id %>">
+				<%= render 'partials/users_content', user: user %>
 			</tr>
 		<% end %>
 	</tbody>
