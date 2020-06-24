@@ -1,6 +1,7 @@
 class Users::PostsController < ApplicationController
 
 	before_action :active_post, only: [:show]
+	before_action :soldout_post, only: [:edit]
 	before_action :authenticate_user!, except: [:top, :about, :index, :show]
 
 	def top
@@ -74,8 +75,15 @@ class Users::PostsController < ApplicationController
 
 	def active_post
 		@post = Post.find(params[:id])
-		if @post.user.status == "退会済"
+		if @post.user.status == "退会済" or @post.status == "販売停止"
 			redirect_to users_posts_path
+		end
+	end
+
+	def soldout_post
+		@post = Post.find(params[:id])
+		if @post.status == "売切"
+			redirect_to users_post_path(@post)
 		end
 	end
 

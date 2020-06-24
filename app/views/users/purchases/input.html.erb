@@ -14,8 +14,7 @@
 		<p>配送先</p>
 	</div>
 	<div>
-		<p>登録済住所</p>
-			<%= f.collection_select :shipping_address_id, ShippingAddress.where(user_id: current_user.id), :id, :full_address %>
+		<%= f.collection_select :shipping_address_id, ShippingAddress.where(user_id: current_user.id), :id, :full_address %>
 	</div>
 
 	<div>

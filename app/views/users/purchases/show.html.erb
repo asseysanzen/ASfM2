@@ -10,12 +10,12 @@
     <% if @purchase.buying_status == "到着待ち" && @purchase.selling_status == "入金確認" && @purchase.selling_user == current_user %>
         <%= form_for @purchase, url: users_purchase_path(@purchase.id) do |f| %>
             <%= f.hidden_field :selling_status, :value => "配送済" %>
-            <%= f.submit '配送完了連絡', class:"btn btn-primary" %>
+            <%= f.submit '配送完了連絡', class:"btn btn-default" %>
         <% end %>
     <% elsif @purchase.selling_status == "配送済" && @purchase.buying_status == "到着待ち" && @purchase.buying_user == current_user %>
         <%= form_for @purchase, url: users_purchase_path(@purchase.id) do |f| %>
             <%= f.hidden_field :buying_status, :value => "商品到着" %>
-            <%= f.submit '商品到着連絡', class:"btn btn-primary" %>
+            <%= f.submit '商品到着連絡', class:"btn btn-default" %>
         <% end %>
     <% end %>
 </div>

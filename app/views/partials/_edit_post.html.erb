@@ -44,7 +44,7 @@
 				</div>
 		<% end %>
 		<% else %>
-			<%= form_for @post_new, url:  users_posts_path do |f| %>
+			<%= form_for post, url:  users_post_path(post.id) do |f| %>
 				<div class="new_post">
 					<%= f.attachment_field :image %>
 					<div class="post_field">

@@ -1,6 +1,7 @@
 class Admins::PostsController < ApplicationController
 
 	before_action :authenticate_admin!
+	before_action :soldout_post, only: [:edit]
 
 	def index
 		@posts = Post.all.ordering.post_paginate(params)
@@ -36,4 +37,12 @@ class Admins::PostsController < ApplicationController
 	def post_params
 		params.require(:post).permit(:user_id, :genre_id, :item_name, :description, :price, :image, :status)
 	end
+
+	def soldout_post
+		@post = Post.find(params[:id])
+		if @post.status == "売切"
+			redirect_to admins_post_path(@post)
+		end
+	end
+
 end

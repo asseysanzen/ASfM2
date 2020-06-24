@@ -28,7 +28,7 @@ class Users::ShippingAddressesController < ApplicationController
   		if @shipping_address.save
     		redirect_to users_shipping_addresses_path
   		else
-  			@shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
+  			@shipping_addresses = ShippingAddress.where(user_id: current_user.id)
   			render :edit
   		end
 	end

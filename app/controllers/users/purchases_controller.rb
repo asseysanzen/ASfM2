@@ -12,9 +12,7 @@ class Users::PurchasesController < ApplicationController
 
 	def data
 		current_purchases = Purchase.current_data.active_purchase.where(selling_user: current_user)
-		genre_sales_counts = current_purchases.group(:genre_id).count
-		genre_sales_ids = Hash[genre_sales_counts.sort_by{ |_, v| -v }].keys
-		@genres = Genre.where(id: genre_sales_ids)
+		@genres = Genre.find(current_purchases.group(:genre_id).order('count(genre_id) desc').pluck(:genre_id))
 		@purchases = Purchase.active_purchase.where(selling_user: current_user)
 	end
 

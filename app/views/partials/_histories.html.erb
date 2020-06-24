@@ -23,7 +23,7 @@
 					<% if purchase.selling_user.status == "有効" %>
 						<%= purchase.selling_user.name %>
 					<% else %>
-						<p>退会済</p>
+						<span>退会済</span>
 					<% end %>
 				</td>
 				<td><%= purchase.selling_status %></td>
@@ -31,7 +31,7 @@
 					<% if purchase.buying_user.status == "有効" %>
 						<%= purchase.buying_user.name %>
 					<% else %>
-						<p>退会済</p>
+						<span>退会済</span>
 					<% end %>
 				</td>
 				<td><%= purchase.buying_status %></td>

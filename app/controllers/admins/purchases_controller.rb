@@ -4,9 +4,7 @@ class Admins::PurchasesController < ApplicationController
 
 	def top
 		current_purchases = Purchase.current_data.active_purchase
-		genre_sales_counts = current_purchases.group(:genre_id).count
-		genre_sales_ids = Hash[genre_sales_counts.sort_by{ |_, v| -v }].keys
-		@genres = Genre.where(id: genre_sales_ids)
+		@genres = Genre.find(current_purchases.group(:genre_id).order('count(genre_id) desc').pluck(:genre_id))
 		@purchases = Purchase.active_purchase
 		@today = Purchase.active_purchase.where(created_at: DateTime.now.beginning_of_day..DateTime.now.end_of_day)
 		@histories = []
