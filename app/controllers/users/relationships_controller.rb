@@ -3,15 +3,13 @@ class Users::RelationshipsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
 	def create
-        @user = current_user
-        @user.follow(params[:user_id])
-    	redirect_to request.referer
+        @user = User.find(params[:user_id])
+        current_user.follow(params[:user_id])
   	end
 
   	def destroy
-        @user = current_user
-    	@user.unfollow(params[:user_id])
-    	redirect_to request.referer
+        @user = User.find(params[:user_id])
+        current_user.unfollow(params[:user_id])
   	end
 
   	def follower

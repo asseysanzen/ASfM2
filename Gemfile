@@ -78,6 +78,8 @@ gem 'jquery-rails' # RailsでjQueryを使えるようにするため
 
 gem 'bootstrap-sass', '~> 3.3.6' # デザイン
 
+gem 'whenever', require: false
+
 gem 'dotenv-rails' #AWSのデータベース使用のため
 group :production do
   gem 'mysql2'
