@@ -1,0 +1,51 @@
+<h3>プロフィール編集</h3>
+
+<div class="profile_edit">
+  <%= form_for @user, url: users_users_fix_path do |f| %>
+  <div class="profile_edit_content">
+    <div class="field">
+      <%= f.label :プロフィール画像 %><br />
+      <%= f.attachment_field :user_image %>
+    </div>
+
+    <div class="field">
+      <%= f.label :名前 %><br />
+      <div class="field_text">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :Twitter %><br />
+      <div class="field_text">
+        <%= f.text_field :twitter_account, autofocus: true, autocomplete: "twitter_account" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :Instagram %><br />
+      <div class="field_text">
+        <%= f.text_field :instagram_account, autofocus: true, autocomplete: "instagram_account" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :プロフィール %><br />
+      <div class="field_text">
+        <%= f.text_area :profile, autofocus: true, autocomplete: "profile" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :メール %><br />
+      <div class="field_text">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="edit_actions">
+      <%= f.submit "更新" %>
+    </div>
+  </div>
+  <% end %>
+</div>
