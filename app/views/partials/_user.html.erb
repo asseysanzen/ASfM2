@@ -1,6 +1,6 @@
 <div class="user_<%= user.id %>">
 	<div class="icon">
-		<%= attachment_image_tag(user, :user_image, size: "200x200", fallback: "no_image.jpg") %>
+		<%= attachment_image_tag(user, :user_image, size: "200x200", fallback: asset_path('no_image.jpg')) %>
 	</div>
 	<div class="follow">
 		<%= render 'partials/follow', user: user %>
