@@ -1,6 +1,6 @@
 # ASfM
 
-## サイト概要
+### サイト概要
 メルカリやラクマのようなフリマアプリ。
 服に特化したフリマアプリ。
 
@@ -35,7 +35,7 @@ SNSで普段その人がどのような投稿をしているかにより、そ�
 いいね
 コメント
 
-## 設計書
+### 設計書
 https://docs.google.com/spreadsheets/d/1sm40zW6XLlgqKXz1Kf6X7Hy9hDWabiF2mUJY2ii5mAM/edit?usp=sharing
 
 ### 機能一覧
