@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     get 'searches' => 'searches#search'
 
     get 'users/mypage' => 'users#mypage' #ログインユーザーのマイページ
-    get 'users/follow' => 'users#follow' #ログインユーザーのフォロー一覧ページ
     get 'users/fix' => 'users#fix' #ユーザー情報修正ページ
     patch 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
     put 'users/fix' => 'users#fix_update' #ユーザー情報アップデート
@@ -45,7 +44,7 @@ Rails.application.routes.draw do
     get 'purchases/sell' => 'purchases#sell' #販売履歴ページ
     get 'purchases/data' => 'purchases#data' #ログインユーザーの売上ページ
     post 'purchases/create_address' => 'purchases#create_address' #購入ページで配送先登録をするため
-    resources :purchases, only: [:show, :create, :update, :destroy] do
+    resources :purchases, only: [:show, :create, :update] do
       member do
         get :input #購入情報入力ページ
         get :new_address #購入時に新しい住所を追加するための画面
@@ -72,7 +71,7 @@ Rails.application.routes.draw do
 
     resources :payment_methods, only: [:index, :edit, :update, :create]
 
-    resources :postages, only: [:index,:edit, :update, :create]
+    resources :postages, only: [:edit, :update, :create]
   end
 
 end
