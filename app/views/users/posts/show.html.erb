@@ -7,7 +7,7 @@
         </div>
 
         <div class="post_button">
-            <% if current_user %>
+            <% if user_signed_in? %> <!-- ユーザーがログインしていて自分以外の販売中の投稿に購入ボタンを表示させる -->
                 <% if @post.status == "販売中" && @post.user != current_user %>
                     <%= form_for @purchase, url: users_purchases_path, method: :POST do |f| %>
                         <%= f.hidden_field :post_id, :value => @post.id %>
@@ -20,7 +20,7 @@
             <% end %>
         </div>
 
-        <div class="comment_<%= @post.id %>">
+        <div class="comment_<%= @post.id %>"> <!-- 非同期通信のためのclass -->
             <%= render 'partials/comment', {post: @post, comment: @comment} %>
         </div>
         <% if user_signed_in? %>

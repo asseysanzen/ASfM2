@@ -10,10 +10,10 @@
 			</thead>
 
 			<tbody>
-				<tr>
+				<tr> <!-- 当日の日付を表示 -->
 					<td><%= Date.current.strftime('%Y/%m/%d') %></td>
 				</tr>
-				<% i = 1 %>
+				<% i = 1 %> <!-- 過去4週間の日付を表示 -->
 				<% while i <= 27 do %>
 				<tr>
 					<td><%= Date.current.ago(i.days).strftime('%Y/%m/%d') %></td>
@@ -33,11 +33,11 @@
 			</thead>
 
 			<tbody>
-				<tr>
+				<tr> <!-- 当日の売上を表示 -->
 					<td><%= @today.sum(:final_price).to_s(:delimited) %>円</td>
 				</tr>
 				<% @histories.each do |history| %>
-				<tr>
+				<tr> <!-- 過去4週間の売上を日別に表示 -->
 					<td><%= history.sum(:final_price).to_s(:delimited) %>円</td>
 				</tr>
 				<% end %>

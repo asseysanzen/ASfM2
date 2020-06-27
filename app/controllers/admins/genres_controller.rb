@@ -8,7 +8,7 @@ class Admins::GenresController < ApplicationController
 	end
 
 	def show
-		@posts = Post.where(genre_id: params[:id]).ordering.post_paginate(params)
+		@posts = Post.where(genre_id: params[:id]).ordering.post_paginate(params) #ordering、post_paginate(params)はモデルに定義
 		@genres = Genre.all
 		@genre = Genre.find(params[:id])
 	end

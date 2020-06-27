@@ -2,7 +2,7 @@
 	<h3>新規投稿</h3>
 </div>
 
-<% if current_user.twitter_account.blank? and current_user.instagram_account.blank? %>
+<% if current_user.twitter_account.blank? and current_user.instagram_account.blank? %> <!-- SNSアカウントを登録しないと投稿ができないように分岐させる -->
 	<div>
 		<p>SNSアカウントを登録してください。</p>
 	</div>

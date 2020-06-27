@@ -3,7 +3,7 @@ class Admins::UsersController < ApplicationController
 	before_action :authenticate_admin!
 
 	def index
-		@users = User.all.ordering.table_paginate(params)
+		@users = User.all.ordering.table_paginate(params) #ordering、table_paginate(params)はモデルに定義
 	end
 
 	def show
@@ -18,7 +18,7 @@ class Admins::UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		@posts = Post.where(user: @user).where.not(status: "売切")
-		if @user.update(user_params)
+		if @user.update(user_params) #ユーザーが退会した場合、販売ステータスが「売切」以外の投稿のステータスを「退会済」に更新する
 			if @user.status == "退会済"
 				@posts.update_all(status: "退会済")
 			end

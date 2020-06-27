@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-    include Paginate
+    include Paginate #定義したページングを使用するためcontrollers/concerns/paginate.rbに定義
 
     devise :database_authenticatable, :registerable,
             :recoverable, :rememberable, :validatable
@@ -25,14 +25,14 @@ class User < ApplicationRecord
 
     validates :name, presence: true
 
-    scope :active_users, -> { where(status: "有効") }
-    scope :ordering, -> { order(id: "DESC") }
+    scope :active_users, -> { where(status: "有効") } #有効会員
+    scope :ordering, -> { order(id: "DESC") } #降順に並べる
 
     def active_for_authentication?
         super && (self.status == "有効")
     end
 
-    def self.search(search, user_or_post)
+    def self.search(search, user_or_post) #検索フォーム。名前で曖昧検索
         if user_or_post == "1" or user_or_post == "3"
             User.where(['name LIKE ?', "%#{search}%"])
         else

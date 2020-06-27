@@ -1,10 +1,12 @@
 class Admins::SearchesController < ApplicationController
 
+	before_action :authenticate_admin!
+
 	def search
 		@genres = Genre.all
-		@user_or_post = params[:case]
-		@status = params[:option]
-		if @user_or_post == "3" && @status == "1"
+		@user_or_post = params[:case] #フォームから受け取る値
+		@status = params[:option] #フォームから受け取る値
+		if @user_or_post == "3" && @status == "1" #ユーザーか投稿か、ステータスはどうなっているかで場合分け
 			@users = User.search(params[:search], @user_or_post).ordering.table_paginate(params)
 		elsif @user_or_post == "3" && @status == "2"
 			@users = User.where(status: "有効").search(params[:search], @user_or_post).ordering.table_paginate(params)

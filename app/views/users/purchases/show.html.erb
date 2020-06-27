@@ -6,7 +6,7 @@
     <%= render 'partials/history', purchase: @purchase %>
 </div>
 
-<div class="status_button">
+<div class="status_button"> <!-- 購入履歴詳細画面条件を満たせばにて「配送完了連絡」、「商品到着連絡」ボタンを表示させる -->
     <% if @purchase.buying_status == "到着待ち" && @purchase.selling_status == "入金確認" && @purchase.selling_user == current_user %>
         <%= form_for @purchase, url: users_purchase_path(@purchase.id) do |f| %>
             <%= f.hidden_field :selling_status, :value => "配送済" %>

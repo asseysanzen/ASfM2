@@ -1,5 +1,7 @@
 class Users::CommentsController < ApplicationController
 
+  #管理者がコメントを削除できるようにbefore_action :authenticate_user!は無し
+
 	def create
    		@post = Post.find(params[:post_id])
    		@comment = Comment.new(comment_params)

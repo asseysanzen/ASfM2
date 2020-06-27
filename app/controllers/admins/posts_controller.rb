@@ -1,10 +1,10 @@
 class Admins::PostsController < ApplicationController
 
 	before_action :authenticate_admin!
-	before_action :soldout_post, only: [:edit]
+	before_action :soldout_post, only: [:edit] #売切になったアイテムを編集できなくするため
 
 	def index
-		@posts = Post.all.ordering.post_paginate(params)
+		@posts = Post.all.ordering.post_paginate(params) #ordering、post_paginate(params)はモデルに定義
 		@genres = Genre.all
 	end
 
@@ -38,7 +38,7 @@ class Admins::PostsController < ApplicationController
 		params.require(:post).permit(:user_id, :genre_id, :item_name, :description, :price, :image, :status)
 	end
 
-	def soldout_post
+	def soldout_post #売切投稿の編集画面へのURL直打ち防止
 		@post = Post.find(params[:id])
 		if @post.status == "売切"
 			redirect_to admins_post_path(@post)
