@@ -65,7 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise' #ログイン機能用
 
-gem 'kaminari','~> 1.1.1' #ページ区切る為
+gem 'kaminari','~> 1.2.1' #ページ区切る為
 
 gem "refile", require: "refile/rails", github: 'manfe/refile' # 画像投稿用
 gem "refile-mini_magick" # 画像加工用（サイズ調整など）
