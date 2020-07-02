@@ -76,7 +76,7 @@ gem 'jp_prefecture' # 住所機能
 
 gem 'jquery-rails' # RailsでjQueryを使えるようにするため
 
-gem 'bootstrap-sass', '~> 3.3.6' # デザイン
+gem 'bootstrap-sass', '~> 3.4.1' # デザイン
 
 gem 'whenever', require: false
 
