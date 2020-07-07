@@ -7,3 +7,5 @@ module Paginate
     scope :post_paginate, -> (p) { page(p[:page]).per(12) }
   end
 end
+
+#githubの反映確認
