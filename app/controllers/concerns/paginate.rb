@@ -9,3 +9,4 @@ module Paginate
 end
 
 #githubの反映確認
+#githubメールアドレス反映確認
