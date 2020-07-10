@@ -2,6 +2,7 @@ class Users::UsersController < ApplicationController
 
 	before_action :active_user, only: [:show] #退会したユーザーの詳細画面を見れなくするため
 	before_action :authenticate_user!, except: [:index, :show]
+	before_action :set_user, only: [:mypage, :fix, :withdrawal, :fix_update]
 
 	def index
 		@users = User.active_users.ordering.table_paginate(params) #active_users、ordering、table_paginate(params)はモデルに定義
@@ -13,20 +14,16 @@ class Users::UsersController < ApplicationController
 	end
 
 	def mypage
-		@user = current_user
 		@posts = Post.where(user_id: current_user.id).ordering.post_paginate(params)
 	end
 
 	def fix
-		@user = current_user
 	end
 
 	def withdrawal
-		@user = current_user
 	end
 
 	def fix_update
-		@user = current_user
 		@posts = Post.where(user: @user).where.not(status: "売切")
 		if @user.update(user_params)
 			if @user.status == "退会済"
@@ -53,6 +50,10 @@ class Users::UsersController < ApplicationController
 		if @user.status == "退会済"
 			redirect_to users_users_path
 		end
+	end
+
+	def set_user
+		@user = current_user
 	end
 
 end
