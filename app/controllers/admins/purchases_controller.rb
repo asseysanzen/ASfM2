@@ -8,7 +8,7 @@ class Admins::PurchasesController < ApplicationController
 		@purchases = Purchase.active_purchase
 		@today = Purchase.active_purchase.where(created_at: DateTime.now.beginning_of_day..DateTime.now.end_of_day) #当日の売上データのみを探してくる
 		@histories = [] #配列で4週間分の売上を1日分ずつ探してくる
-		1.upto(27) do |i|
+		1.upto(27) do |i| #逆に数を小さくしていくにはdownto、回数指定にはtimesを使う
 		  @histories << Purchase.active_purchase.where(created_at: DateTime.now.beginning_of_day - i.day..DateTime.now.end_of_day - i.day)
 		end
 	end
